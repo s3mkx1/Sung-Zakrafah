@@ -3,182 +3,211 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SUNG Zakhrafa | زخرفة الأسماء</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+  <title>SUNG Zakhrafa</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&display=swap');
     body {
+      font-family: 'Cairo', sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
       margin: 0;
-      font-family: 'Cairo', 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #1f1f2e, #2f3e46);
-      color: #fff;
-      text-align: center;
-      min-height: 100vh;
+      padding: 0;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      align-items: center;
+      min-height: 100vh;
     }
     header {
-      padding: 20px;
-      font-size: 1.5em;
-      font-weight: 700;
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(6px);
-    }
-    header span { color: #00bcd4; }
-    main { padding: 20px; flex: 1; }
-    input {
-      padding: 10px;
-      width: 80%;
-      max-width: 400px;
-      border: none;
-      border-radius: 8px;
-      font-size: 1em;
-      margin-bottom: 20px;
       text-align: center;
+      padding: 2rem 1rem;
     }
-    button.copy-btn {
-      background: #00bcd4;
+    header h1 {
+      font-size: 2.5rem;
+      color: #38bdf8;
+    }
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .tab {
+      background: #1e293b;
       border: none;
-      color: #fff;
-      padding: 8px 16px;
-      border-radius: 8px;
+      padding: 0.7rem 1.5rem;
+      border-radius: 10px;
       cursor: pointer;
-      transition: 0.2s;
+      color: #e2e8f0;
+      transition: 0.3s;
+      font-size: 1rem;
     }
-    button.copy-btn:hover { background: #0097a7; }
-    .result {
-      background: rgba(255, 255, 255, 0.05);
-      margin: 10px auto;
+    .tab.active {
+      background: #38bdf8;
+      color: #0f172a;
+      font-weight: bold;
+    }
+    input {
+      width: 90%;
+      max-width: 500px;
+      padding: 0.8rem;
+      border-radius: 10px;
+      border: none;
+      margin-bottom: 1rem;
+      text-align: center;
+      font-size: 1.1rem;
+    }
+    .results {
+      display: grid;
+      gap: 0.8rem;
       width: 90%;
       max-width: 600px;
-      padding: 10px;
-      border-radius: 8px;
+    }
+    .style-box {
+      background: #1e293b;
+      padding: 1rem;
+      border-radius: 10px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 1.2em;
+      font-size: 1.2rem;
+      transition: 0.3s;
     }
-    .footer {
-      padding: 15px;
-      font-size: 0.9em;
-      opacity: 0.8;
+    .style-box:hover {
+      background: #2d3b53;
     }
-    .lang-toggle {
-      position: fixed;
-      top: 15px;
-      right: 15px;
-      background: #00bcd4;
-      color: #fff;
+    button.copy {
+      background: #38bdf8;
       border: none;
-      padding: 8px 14px;
+      padding: 0.4rem 0.8rem;
       border-radius: 8px;
       cursor: pointer;
-      transition: 0.2s;
+      color: #0f172a;
       font-weight: bold;
     }
-    .lang-toggle:hover { background: #0097a7; }
+    footer {
+      margin-top: auto;
+      text-align: center;
+      padding: 1.5rem 0;
+      font-size: 0.9rem;
+      color: #94a3b8;
+    }
+    .hashtags {
+      margin-top: 1rem;
+      color: #38bdf8;
+      font-size: 0.9rem;
+    }
   </style>
 </head>
 <body>
-  <header><span>SUNG</span> Zakhrafa</header>
-  <button class="lang-toggle" onclick="toggleLang()">EN</button>
+  <header>
+    <h1>SUNG Zakhrafa</h1>
+    <p>زخرف اسمك بالعربية أو الإنجليزية بسهولة</p>
+  </header>
 
-  <main>
-    <h2 id="title">زخرفة الأسماء</h2>
-    <p id="subtitle">اكتب الاسم بالأسفل وشاهد الزخارف الجميلة ✨</p>
-    <input type="text" id="nameInput" placeholder="اكتب الاسم هنا..." oninput="generate()">
-    <div id="results"></div>
-  </main>
+  <div class="tabs">
+    <button class="tab active" id="arabicTab">زخرفة عربية</button>
+    <button class="tab" id="englishTab">زخرفة إنجليزية</button>
+  </div>
 
-  <div class="footer">© 2025 SUNG – Made with ❤️ by SUNG</div>
+  <input type="text" id="inputText" placeholder="اكتب الاسم هنا...">
+
+  <div class="results" id="results"></div>
+
+  <footer>
+    <div class="hashtags">#زخرفة #اسماء #زخرفة_عربية #زخرفة_انجليزية #SUNG_Zakhrafa</div>
+    <p>© 2025 SUNG | Made with ❤️ by SUNG</p>
+  </footer>
 
   <script>
-    const arabicDecorations = [
-      "꧁༒☬ ${name} ☬༒꧂",
-      "★彡 ${name} 彡★",
-      "♛ ${name} ♛",
-      "✿ ${name} ✿",
-      "𓆩 ${name} 𓆪",
-      "♡ ${name} ♡",
-      "⫷ ${name} ⫸",
-      "☾ ${name} ☽",
-      "ღ ${name} ღ",
-      "★【 ${name} 】★"
+    // زخارف عربية متنوعة
+    const arabicStyles = [
+      n => `مـ${n.split('').join('ـ')}ـ`,
+      n => `★${n}★`,
+      n => `『${n}』`,
+      n => `꧁${n}꧂`,
+      n => `☬${n}☬`,
+      n => `✾${n}✾`,
+      n => `♡${n}♡`,
+      n => `☆${n}☆`,
+      n => `•${n}•`,
+      n => `${n}ツ`,
+      n => `مـ${n.split('').join('ـ')}ツ`,
+      n => `مـ${n.split('').join('ـ')}ـ ♕`,
+      n => `꧁༺${n}༻꧂`,
+      n => `${n} 𓆩♡𓆪`,
+      n => `مـ${n.split('').join('؏')}ـ`,
+      n => `${n} ☁`,
+      n => `✦${n}✦`,
+      n => `⸙${n}⸙`,
+      n => `${n} ⚘`,
+      n => `${n} ☾☽`
     ];
 
-    const englishDecorations = [
-      "${fancy(name, 'bold')}",
-      "${fancy(name, 'double')}",
-      "${fancy(name, 'serifBold')}",
-      "${fancy(name, 'sans')}",
-      "${fancy(name, 'small')}",
-      "${fancy(name, 'square')}",
-      "★彡 ${fancy(name, 'normal')} 彡★",
-      "꧁༒ ${fancy(name, 'italic')} ༒꧂",
-      "☾ ${fancy(name, 'wide')} ☽",
-      "✿ ${fancy(name, 'tiny')} ✿"
+    // زخارف إنجليزية متنوعة
+    const englishStyles = [
+      n => n.toUpperCase(),
+      n => n.toLowerCase(),
+      n => n[0].toUpperCase() + n.slice(1).toLowerCase(),
+      n => `★${n}★`,
+      n => `꧁${n}꧂`,
+      n => `✧${n}✧`,
+      n => `♡${n}♡`,
+      n => `🅂🅄🄽🄶`.split('').map((c,i)=>n[i]||'').join(''),
+      n => `𝕊𝕌ℕ𝔾`.split('').map((c,i)=>n[i]||'').join(''),
+      n => `ＳＵＮＧ`.split('').map((c,i)=>n[i]||'').join(''),
+      n => `𝓈𝓊𝓃𝑔`.split('').map((c,i)=>n[i]||'').join(''),
+      n => `ˢᵘⁿᵍ`.split('').map((c,i)=>n[i]||'').join(''),
+      n => `𝖘𝖚𝖓𝖌`.split('').map((c,i)=>n[i]||'').join(''),
+      n => `𝔖𝔲𝔫𝔤`.split('').map((c,i)=>n[i]||'').join(''),
+      n => `𝑆𝑈𝑁𝐺`.split('').map((c,i)=>n[i]||'').join(''),
+      n => `🅢🅤🅝🅖`.split('').map((c,i)=>n[i]||'').join(''),
+      n => `ѕυɴɢ`.split('').map((c,i)=>n[i]||'').join(''),
+      n => `🅢${n}🅖`,
+      n => `⚡${n}⚡`,
+      n => `『${n}』`
     ];
 
-    let lang = "ar";
+    const input = document.getElementById('inputText');
+    const results = document.getElementById('results');
+    const arabicTab = document.getElementById('arabicTab');
+    const englishTab = document.getElementById('englishTab');
 
-    const fancyMaps = {
-      bold: { A:"𝗔",B:"𝗕",C:"𝗖",D:"𝗗",E:"𝗘",F:"𝗙",G:"𝗚",H:"𝗛",I:"𝗜",J:"𝗝",K:"𝗞",L:"𝗟",M:"𝗠",N:"𝗡",O:"𝗢",P:"𝗣",Q:"𝗤",R:"𝗥",S:"𝗦",T:"𝗧",U:"𝗨",V:"𝗩",W:"𝗪",X:"𝗫",Y:"𝗬",Z:"𝗭",a:"𝗮",b:"𝗯",c:"𝗰",d:"𝗱",e:"𝗲",f:"𝗳",g:"𝗴",h:"𝗵",i:"𝗶",j:"𝗷",k:"𝗸",l:"𝗹",m:"𝗺",n:"𝗻",o:"𝗼",p:"𝗽",q:"𝗾",r:"𝗿",s:"𝘀",t:"𝘁",u:"𝘂",v:"𝘃",w:"𝘄",x:"𝘅",y:"𝘆",z:"𝘇"},
-      double: { A:"𝔄",B:"𝔅",C:"ℭ",D:"𝔇",E:"𝔈",F:"𝔉",G:"𝔊",H:"ℌ",I:"ℑ",J:"𝔍",K:"𝔎",L:"𝔏",M:"𝔐",N:"𝔑",O:"𝔒",P:"𝔓",Q:"𝔔",R:"ℜ",S:"𝔖",T:"𝔗",U:"𝔘",V:"𝔙",W:"𝔚",X:"𝔛",Y:"𝔜",Z:"ℨ",a:"𝔞",b:"𝔟",c:"𝔠",d:"𝔡",e:"𝔢",f:"𝔣",g:"𝔤",h:"𝔥",i:"𝔦",j:"𝔧",k:"𝔨",l:"𝔩",m:"𝔪",n:"𝔫",o:"𝔬",p:"𝔭",q:"𝔮",r:"𝔯",s:"𝔰",t:"𝔱",u:"𝔲",v:"𝔳",w:"𝔴",x:"𝔵",y:"𝔶",z:"𝔷"},
-      serifBold: { A:"𝐀",B:"𝐁",C:"𝐂",D:"𝐃",E:"𝐄",F:"𝐅",G:"𝐆",H:"𝐇",I:"𝐈",J:"𝐉",K:"𝐊",L:"𝐋",M:"𝐌",N:"𝐍",O:"𝐎",P:"𝐏",Q:"𝐐",R:"𝐑",S:"𝐒",T:"𝐓",U:"𝐔",V:"𝐕",W:"𝐖",X:"𝐗",Y:"𝐘",Z:"𝐙",a:"𝐚",b:"𝐛",c:"𝐜",d:"𝐝",e:"𝐞",f:"𝐟",g:"𝐠",h:"𝐡",i:"𝐢",j:"𝐣",k:"𝐤",l:"𝐥",m:"𝐦",n:"𝐧",o:"𝐨",p:"𝐩",q:"𝐪",r:"𝐫",s:"𝐬",t:"𝐭",u:"𝐮",v:"𝐯",w:"𝐰",x:"𝐱",y:"𝐲",z:"𝐳"},
-      small: { A:"ᴀ",B:"ʙ",C:"ᴄ",D:"ᴅ",E:"ᴇ",F:"ғ",G:"ɢ",H:"ʜ",I:"ɪ",J:"ᴊ",K:"ᴋ",L:"ʟ",M:"ᴍ",N:"ɴ",O:"ᴏ",P:"ᴘ",Q:"ǫ",R:"ʀ",S:"s",T:"ᴛ",U:"ᴜ",V:"ᴠ",W:"ᴡ",X:"x",Y:"ʏ",Z:"ᴢ",a:"ᴀ",b:"ʙ",c:"ᴄ",d:"ᴅ",e:"ᴇ",f:"ғ",g:"ɢ",h:"ʜ",i:"ɪ",j:"ᴊ",k:"ᴋ",l:"ʟ",m:"ᴍ",n:"ɴ",o:"ᴏ",p:"ᴘ",q:"ǫ",r:"ʀ",s:"s",t:"ᴛ",u:"ᴜ",v:"ᴠ",w:"ᴡ",x:"x",y:"ʏ",z:"ᴢ"},
-      square: { A:"🅰",B:"🅱",C:"🅲",D:"🅳",E:"🅴",F:"🅵",G:"🅶",H:"🅷",I:"🅸",J:"🅹",K:"🅺",L:"🅻",M:"🅼",N:"🅽",O:"🅾",P:"🅿",Q:"🆀",R:"🆁",S:"🆂",T:"🆃",U:"🆄",V:"🆅",W:"🆆",X:"🆇",Y:"🆈",Z:"🆉"}
-    };
+    let mode = 'arabic';
 
-    function fancy(text, style) {
-      const map = fancyMaps[style] || {};
-      return text.split('').map(c => map[c] || map[c.toUpperCase()] || c).join('');
-    }
-
-    function generate() {
-      const name = document.getElementById("nameInput").value.trim();
-      const results = document.getElementById("results");
-      results.innerHTML = "";
-      if (!name) return;
-
-      const allDecorations = [...arabicDecorations, ...englishDecorations];
-
-      allDecorations.forEach(dec => {
-        const evaluated = dec.replace(/\$\{(.*?)\}/g, (_, code) => eval(code));
-        const div = document.createElement("div");
-        div.className = "result";
-        div.innerHTML = `<span>${evaluated}</span> <button class="copy-btn" onclick="copyText('${evaluated}')">${lang === 'ar' ? 'نسخ' : 'Copy'}</button>`;
-        results.appendChild(div);
+    function render() {
+      const text = input.value.trim();
+      results.innerHTML = '';
+      if (!text) return;
+      const styles = mode === 'arabic' ? arabicStyles : englishStyles;
+      styles.forEach(fn => {
+        const styled = fn(text);
+        const box = document.createElement('div');
+        box.className = 'style-box';
+        box.innerHTML = `<span>${styled}</span><button class="copy">نسخ</button>`;
+        box.querySelector('.copy').onclick = () => {
+          navigator.clipboard.writeText(styled);
+          box.querySelector('.copy').innerText = '✓';
+          setTimeout(()=>box.querySelector('.copy').innerText='نسخ',1000);
+        };
+        results.appendChild(box);
       });
     }
 
-    function copyText(text) {
-      navigator.clipboard.writeText(text);
-      alert(lang === 'ar' ? "تم النسخ!" : "Copied!");
-    }
+    input.addEventListener('input', render);
 
-    function toggleLang() {
-      const title = document.getElementById("title");
-      const subtitle = document.getElementById("subtitle");
-      const input = document.getElementById("nameInput");
-      const btn = document.querySelector(".lang-toggle");
+    arabicTab.onclick = () => {
+      mode = 'arabic';
+      arabicTab.classList.add('active');
+      englishTab.classList.remove('active');
+      render();
+    };
 
-      if (lang === "ar") {
-        lang = "en";
-        document.body.dir = "ltr";
-        title.textContent = "Name Decoration";
-        subtitle.textContent = "Enter your name below and see beautiful styles ✨";
-        input.placeholder = "Type your name...";
-        btn.textContent = "AR";
-      } else {
-        lang = "ar";
-        document.body.dir = "rtl";
-        title.textContent = "زخرفة الأسماء";
-        subtitle.textContent = "اكتب الاسم بالأسفل وشاهد الزخارف الجميلة ✨";
-        input.placeholder = "اكتب الاسم هنا...";
-        btn.textContent = "EN";
-      }
-      generate();
-    }
+    englishTab.onclick = () => {
+      mode = 'english';
+      englishTab.classList.add('active');
+      arabicTab.classList.remove('active');
+      render();
+    };
   </script>
 </body>
 </html>
