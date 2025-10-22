@@ -1,533 +1,164 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>SUNG Zakhrafa</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg:#f7fafc;
-      --card:#ffffff;
-      --muted:#6b7280;
-      --accent:#0ea5e9; /* sky blue */
-      --text:#0f172a;
-      --input:#eef2f7;
-      --radius:12px;
-      --shadow: 0 6px 18px rgba(15,23,42,0.08);
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:'Cairo', 'Poppins', sans-serif;
-      background:var(--bg);
-      color:var(--text);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      min-height:100vh;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      padding:28px 16px;
-    }
-    .container{
-      width:100%;
-      max-width:980px;
-      background:transparent;
-    }
-    header{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      margin-bottom:18px;
-    }
-    .brand{
-      display:flex;
-      gap:12px;
-      align-items:center;
-    }
-    .logo{
-      width:48px;height:48px;border-radius:10px;
-      background:linear-gradient(135deg,var(--accent),#60a5fa);
-      display:flex;align-items:center;justify-content:center;
-      color:#fff;font-weight:700;font-size:18px;box-shadow:var(--shadow);
-    }
-    h1{margin:0;font-size:20px}
-    p.lead{margin:0;color:var(--muted);font-size:14px}
-
-    .card{
-      background:var(--card);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      padding:18px;
-      margin-bottom:16px;
-    }
-
-    .tabs{
-      display:flex;
-      gap:8px;
-      margin-bottom:14px;
-    }
-    .tab{
-      border:1px solid transparent;
-      padding:8px 14px;
-      border-radius:999px;
-      font-weight:600;
-      background:transparent;
-      cursor:pointer;
-      color:var(--muted);
-      transition:all .18s ease;
-    }
-    .tab.active{
-      background:linear-gradient(90deg, rgba(14,165,233,0.12), rgba(96,165,250,0.08));
-      color:var(--text);
-      border-color:rgba(14,165,233,0.18);
-      box-shadow:0 6px 18px rgba(14,165,233,0.06);
-    }
-
-    .input-wrap{
-      display:flex;
-      gap:10px;
-      align-items:center;
-      margin-bottom:14px;
-      flex-wrap:wrap;
-    }
-    input[type="text"]{
-      flex:1;
-      min-width:220px;
-      padding:12px 14px;
-      border-radius:10px;
-      border:1px solid #e6edf7;
-      background:var(--input);
-      font-size:16px;
-      outline:none;
-      color:var(--text);
-      box-shadow:inset 0 1px 0 rgba(15,23,42,0.02);
-      text-align:center;
-    }
-    .hint{
-      color:var(--muted);font-size:13px;
-    }
-
-    .results{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:10px;
-      margin-top:8px;
-    }
-
-    .style-box{
-      background:linear-gradient(180deg,#ffffff,#fbfdff);
-      border-radius:10px;
-      padding:12px 14px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      border:1px solid #eef5fb;
-      box-shadow: 0 6px 20px rgba(16,24,40,0.03);
-      transform-origin:center;
-      transition:transform .18s ease, box-shadow .18s ease;
-    }
-    .style-box:hover{ transform:translateY(-4px); box-shadow:0 12px 30px rgba(16,24,40,0.06); }
-
-    .styled-text{
-      font-size:18px;
-      line-height:1.2;
-      word-break:break-word;
-      color:var(--text);
-      min-height:28px;
-      white-space:pre-wrap;
-      font-weight:600;
-    }
-    .styled-text.small{ font-size:15px;font-weight:500; }
-    .btn-copy{
-      background:var(--accent);
-      color:#fff;border:none;padding:8px 12px;border-radius:10px;
-      cursor:pointer;font-weight:700;
-      box-shadow:0 6px 18px rgba(14,165,233,0.12);
-    }
-    .btn-copy.copied{ background: #10b981; box-shadow:0 6px 18px rgba(16,185,129,0.12); }
-
-    footer{
-      margin-top:22px;
-      text-align:center;color:var(--muted);font-size:14px;
-    }
-    .made{
-      margin-top:6px;color:var(--muted);font-size:13px;font-weight:600;
-    }
-
-    /* responsive */
-    @media (min-width:720px){
-      .results{ grid-template-columns: 1fr 1fr; }
-      .styled-text{ font-size:20px }
-    }
-    @media (min-width:1000px){
-      .results{ grid-template-columns: 1fr 1fr 1fr; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>زخرفة الأسماء | SUNG</title>
+<style>
+  body {
+    font-family: 'Cairo', sans-serif;
+    background: #f8f9fb;
+    color: #222;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+  header {
+    background: #fff;
+    padding: 15px;
+    font-size: 22px;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  }
+  .tabs {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    gap: 10px;
+  }
+  button.tab {
+    border: none;
+    background: #e5e7eb;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: 0.3s;
+  }
+  button.tab.active {
+    background: #2563eb;
+    color: #fff;
+  }
+  .container {
+    margin-top: 20px;
+    max-width: 600px;
+    margin-inline: auto;
+    background: #fff;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  input {
+    width: 90%;
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    outline: none;
+    text-align: center;
+  }
+  .results {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .result {
+    background: #f4f6f8;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 18px;
+    position: relative;
+  }
+  .copy {
+    position: absolute;
+    right: 12px;
+    top: 10px;
+    background: #2563eb;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 5px 8px;
+    cursor: pointer;
+    font-size: 13px;
+  }
+  footer {
+    margin-top: 30px;
+    padding: 20px;
+    font-size: 14px;
+    color: #888;
+  }
+</style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="brand">
-        <div class="logo">S</div>
-        <div>
-          <h1>SUNG Zakhrafa</h1>
-          <p class="lead">زخرف الأسماء بخطوط احترافية — اختر تبويب عربي أو إنجليزي وادخل أي اسم.</p>
-        </div>
-      </div>
-      <div class="meta">
-        <div style="text-align:right">
-          <div style="font-size:13px;color:var(--muted)">Light mode • صفحة واحدة</div>
-          <div style="font-weight:700;color:var(--accent);font-size:13px">© 2025 SUNG</div>
-        </div>
-      </div>
-    </header>
+  <header>🎨 زخرفة الأسماء | SUNG</header>
 
-    <div class="card">
-      <div class="tabs" role="tablist">
-        <button class="tab active" id="tab-ar">زخرفة عربية</button>
-        <button class="tab" id="tab-en">زخرفة إنجليزية</button>
-      </div>
-
-      <div class="input-wrap">
-        <input id="nameInput" type="text" placeholder="اكتب الاسم هنا... (مثال: محمد أو sara)" autocomplete="off" />
-        <div class="hint">زر نسخ بجانب كل سطر — كل نمط قابل للنسخ مباشرة</div>
-      </div>
-
-      <div id="results" class="results" aria-live="polite"></div>
-    </div>
-
-    <footer>
-      <div class="made">Made by SUNG</div>
-      <div style="margin-top:6px;color:var(--muted)">© 2025 SUNG | Made with ❤️ by SUNG</div>
-    </footer>
+  <div class="tabs">
+    <button class="tab active" id="arabicTab">زخرفة عربية</button>
+    <button class="tab" id="englishTab">زخرفة إنجليزية</button>
   </div>
 
-  <script>
-    /***********************
-     * خريطة تحويل الحروف الإنجليزية إلى أنماط Unicode متعددة
-     * كل مصفوفة هي سلسلة تمثل أحرف a..z بصيغ مختلفة
-     ***********************/
-    const englishMaps = {
-      normal: "abcdefghijklmnopqrstuvwxyz",
-      bold: "𝗮𝗯𝗰𝗱𝗲𝗳𝗴𝗵𝗶𝗷𝗸𝗹𝗺𝗻𝗼𝗽𝗾𝗿𝘀𝘁𝘂𝘷𝘄𝘅𝘆𝘇",
-      boldUpper: "𝗔𝗕𝗖𝗗𝗘𝗙𝗚𝗛𝗜𝗝𝗞𝗟𝗠𝗡𝗢𝗣𝗤𝗥𝗦𝗧𝗨𝗩𝗪𝗫𝗬𝗭",
-      double: "𝕒𝕓𝕔𝕕𝕖𝕗𝕘𝕙𝕚𝕛𝕜𝕝𝕞𝕟𝕠𝕡𝕢𝕣𝕤𝕥𝕦𝕧𝕨𝕩𝕪𝕫",
-      serif: "𝑎𝑏𝑐𝑑𝑒𝑓𝑔𝑕𝑖𝑗𝑘𝑙𝑚𝑛𝑜𝑝𝑞𝑟𝑠𝑡𝑢𝑣𝑤𝑥𝑦𝑧",
-      serifBold: "𝐚𝐛𝐜𝐝𝐞𝐟𝐠𝐡𝐢𝐣𝐤𝐥𝐦𝐧𝐨𝐩𝐪𝐫𝐬𝐭𝐮𝐯𝐰𝐱𝐲𝐳",
-      cursive: "𝒶𝒷𝒸𝒹ℯ𝒻𝑔𝒽𝒾𝒿𝓀𝓁𝓂𝓃ℴ𝓅𝓆𝓇𝓈𝓉𝓊𝓋𝓌𝓍𝓎𝓏",
-      script: "𝓪𝓫𝓬𝓭𝓮𝓯𝓰𝓱𝓲𝓳𝓴𝓵𝓶𝓷𝓸𝓹𝓺𝓻𝓼𝓽𝓾𝓿𝔀𝔁𝔂𝔃",
-      fraktur: "𝔞𝔟𝔠𝔡𝔢𝔣𝔤𝔥𝔦𝔧𝔨𝔩𝔪𝔫𝔬𝔭𝔮𝔯𝔰𝔱𝔲𝔳𝔴𝔵𝔶𝔷",
-      gothic: "𝖆𝖇𝖈𝖉𝖊𝖋𝖌𝖍𝖎𝖏𝖐𝖑𝖒𝖓𝖔𝖕𝖖𝖗𝖘𝖙𝖚𝖛𝖜𝖝𝖞𝖟",
-      monospace: "𝚊𝚋𝚌𝚍𝚎𝚏𝚐𝚑𝚒𝚓𝚔𝚕𝚖𝚗𝚘𝚙𝚚𝚛𝚜𝚝𝚞𝚟𝚠𝚡𝚢𝚣",
-      smallcaps: "ᴀʙᴄᴅᴇꜰɢʜɪᴊᴋʟᴍɴᴏᴘǫʀsᴛᴜvᴡxʏᴢ",
-      tiny: "ᵃᵇᶜᵈᵉᶠᵍʰᶦʲᵏˡᵐⁿᵒᵖᵠʳˢᵗᵘᵛʷˣʸᶻ",
-      circled: "ⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩ",
-      squared: "🄰🄱🄲🄳🄴🄵🄶🄷🄸🄹🄺🄻🄼🄽🄾🄿🅀🅁🅂🅃🅄🅅🅆🅇🅈🅉",
-      fullwidth: "ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ",
-      doubleSerif: "𝕒𝕓𝕔𝕕𝕖𝕗𝕘𝕙𝕚𝕛𝕜𝕝𝕞𝕟𝕠𝕡𝕢𝕣𝕤𝕥𝕦𝕧𝕨𝕩𝕪𝕫",
-      serifItalic: "𝑎𝑏𝑐𝑑𝑒𝑓𝑔𝑕𝑖𝑗𝑘𝑙𝑚𝑛𝑜𝑝𝓺𝓻𝓼𝓽𝓾𝓿𝔀𝔁𝔂𝔃",
-      mathBoldItalic: "𝒂𝒃𝒄𝒅𝒆𝒇𝒈𝒉𝒊𝒋𝒌𝒍𝒎𝒏𝒐𝒑𝒒𝒓𝒔𝒕𝒖𝒗𝒘𝒙𝒚𝒛"
-    };
+  <div class="container">
+    <input type="text" id="inputText" placeholder="اكتب الاسم هنا...">
+    <div class="results" id="results"></div>
+  </div>
 
-    // Helper to create many english style functions automatically
-    const englishStyleGenerators = [];
+  <footer>Made by <b>SUNG</b></footer>
 
-    // generate functions that wrap different maps
-    for (const key in englishMaps) {
-      englishStyleGenerators.push({
-        name: key,
-        fn: (n => n => mapConvert(n, englishMaps[key]))()
-      });
-      // also variants with first-letter spaced, spaced between, dashed, upper spaced
-      englishStyleGenerators.push({
-        name: key + "_spaced",
-        fn: (n => n => mapConvert(n, englishMaps[key]).split('').join(' '))()
-      });
-      englishStyleGenerators.push({
-        name: key + "_dash",
-        fn: (n => n => mapConvert(n, englishMaps[key]).split('').join('-'))()
-      });
-      englishStyleGenerators.push({
-        name: key + "_double",
-        fn: (n => n => mapConvert(n, englishMaps[key]).split('').map(c=>c+c).join(''))()
-      });
-    }
+<script>
+const arabicFonts = [
+  "Cairo", "Amiri", "Tajawal", "Changa", "El Messiri",
+  "Scheherazade New", "Reem Kufi", "Noto Naskh Arabic"
+];
+const englishFonts = [
+  "Poppins", "Roboto", "Playfair Display", "Lobster",
+  "Merriweather", "Raleway", "Montserrat", "Pacifico"
+];
 
-    // additional handcrafted English fancy transforms
-    const customEnglishExtras = [
-      n => mapConvert(n,'𝔖𝔲𝔫𝔤'.toLowerCase()), // fraktur-like (fallback)
-      n => mapConvert(n, englishMaps.cursive).split('').reverse().join(''),
-      n => mapConvert(n, englishMaps.bold).split('').map(ch => ch + '\u035C').join(''), // combining overlay (subtle)
-      n => mapConvert(n, englishMaps.serif).replace(/ /g,'\u200A'),
-      n => mapConvert(n, englishMaps.monospace).toUpperCase(),
-      n => mapConvert(n, englishMaps.smallcaps).toUpperCase(),
-      n => mapConvert(n, englishMaps.fullwidth),
-    ];
+let activeLang = 'arabic';
+const input = document.getElementById("inputText");
+const results = document.getElementById("results");
 
-    /******************************
-     * Arabic patterns (dynamic)
-     * - نستخدم tatweel (ـ) وتمديدات متغيرة
-     * - تكرار بعض الحروف مع مسافات صغيرة لإعطاء شكل زخرفي
-     * - دمج حروف مع تبديلات بسيطة
-     ******************************/
-    // Utility: insert tatweel between characters with different densities
-    function tatweelBetween(s, density=1){
-      const parts = s.split('');
-      if(parts.length===1) return s;
-      const tat = 'ـ';
-      if (density<=0) return parts.join('');
-      if (density===1) return parts.join(tat);
-      if (density===2) return parts.join(tat+tat);
-      if (density===3) return parts.join(tat+tat+tat);
-      return parts.join(tat);
-    }
+document.getElementById("arabicTab").addEventListener("click", () => {
+  setActive('arabic');
+});
+document.getElementById("englishTab").addEventListener("click", () => {
+  setActive('english');
+});
 
-    // elongate: duplicate some chars and add small connectors
-    function arabicElongate(s, style=0){
-      const chars = s.split('');
-      if (chars.length===0) return s;
-      const res = [];
-      for(let i=0;i<chars.length;i++){
-        let c = chars[i];
-        if (style===0) {
-          res.push(c);
-          if (i%2===0 && i<chars.length-1) res.push('ـ');
-        } else if (style===1){
-          res.push(c);
-          if (i%1===0) res.push('ّ'); // shadda like mark (visual)
-        } else if (style===2){
-          res.push(c);
-          if (i%2===1) res.push('ـ');
-        } else if (style===3){
-          res.push(c.repeat(2));
-        } else {
-          res.push(c);
-        }
-      }
-      return res.join('');
-    }
+function setActive(lang) {
+  activeLang = lang;
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(lang + 'Tab').classList.add('active');
+  generate();
+}
 
-    // Arabic stylers list (will produce many variants by mapping)
-    const arabicGenerators = [];
+input.addEventListener("input", generate);
 
-    // base generator functions (various tasty forms)
-    const baseArabicFns = [
-      n => tatweelBetween(n,1),        // basic tatweel between
-      n => tatweelBetween(n,2),        // denser
-      n => tatweelBetween(n,3),
-      n => 'مـ' + n.split('').join('ـ') + 'ـ', // typical mـxـxـ
-      n => 'مــ' + n.split('').join('ــ') + 'ــ',
-      n => arabicElongate(n,0),
-      n => arabicElongate(n,1),
-      n => arabicElongate(n,2),
-      n => arabicElongate(n,3),
-      n => '『' + n + '』',
-      n => '『' + tatweelBetween(n,1) + '』',
-      n => n.split('').join('\u200A'), // hair space between letters
-      n => n.split('').join('\u200B'), // zero width joiner spaces (visual)
-      n => n + 'ـ'.repeat(2),
-      n => 'ـ'.repeat(2) + n,
-      n => n + n.split('').reverse().join(''), // mirrored hybrid
-      n => n.split('').map((c,i)=> i%2? c+'\u0651': c).join(''), // add shadda every second
-      n => n.split('').map((c,i)=> i%2? 'ـ'+c : c).join(''),
-      n => n.split('').map((c,i)=> i%3===0? c+c : c).join(''),
-      n => n.split('').map((c,i)=> i%3===0? c+'ّ' : c).join(''),
-      n => n.split('').map((c,i)=> i%2? c+'ٰ' : c).join(''), // maddah-like
-      n => n.split('').map((c,i)=> c + (i< n.length-1? '‌' : '')).join(''), // narrow no-break space
-      n => n.replace(/(.)/g,'$1\u200D'), // zero-width joiner to vary ligatures
-      n => '»' + n + '«',
-      n => '‹' + tatweelBetween(n,1) + '›',
-      n => n.split('').join('⸻'), // decorative dash between
-      n => n.split('').join('\uFEFF'), // zwj filler
-      n => n.split('').join('\u2060'), // word joiner
-      n => n.split('').map(c=> c + (Math.random()>0.5? 'ّ':'')).join(''),
-      n => n.split('').join('ـ̶'), // tatweel + overlay
-      n => 'ـ' + n.split('').join('ـ') + 'ـ',
-    ];
+function generate() {
+  const text = input.value.trim();
+  results.innerHTML = "";
+  if (!text) return;
 
-    // Create many Arabic style functions programmatically to reach 50+
-    for(let i=0;i<baseArabicFns.length;i++){
-      arabicGenerators.push(baseArabicFns[i]);
-      // variations: wrapped, upper, repeated
-      arabicGenerators.push(n => '★' + baseArabicFns[i](n) + '★');
-      arabicGenerators.push(n => '『' + baseArabicFns[i](n) + '』');
-      arabicGenerators.push(n => baseArabicFns[i](n).split('').map((c,idx)=> idx%2? c+'ّ': c).join(''));
-      arabicGenerators.push(n => baseArabicFns[i](n).split('').reverse().join(''));
-    }
+  const list = activeLang === 'arabic' ? arabicFonts : englishFonts;
 
-    // Ensure unique and trim to ~50-60 arabic styles
-    // (We will slice after making a big list)
-    // Now build english style functions from englishStyleGenerators & extras
-    const englishGenerators = [];
+  list.forEach(f => {
+    const div = document.createElement("div");
+    div.className = "result";
+    div.style.fontFamily = f;
+    div.innerHTML = `<span>${text}</span><button class="copy" onclick="copyText('${text}')">نسخ</button>`;
+    results.appendChild(div);
+  });
+}
 
-    // function: convert a-z based on map string
-    function mapConvert(text, mapStr){
-      // mapStr length may be 26 or custom; handle fallback
-      const normal = englishMaps.normal;
-      const map = mapStr && mapStr.length>=26 ? mapStr : mapStr;
-      return text.split('').map(ch=>{
-        const lower = ch.toLowerCase();
-        const idx = normal.indexOf(lower);
-        if (idx===-1) return ch; // not a latin letter, return as-is
-        // pick the mapped char at idx, but preserve case somewhat
-        const out = map[idx] || ch;
-        return ch === ch.toUpperCase() ? (out.toUpperCase ? out.toUpperCase() : out) : out;
-      }).join('');
-    }
+function copyText(text) {
+  navigator.clipboard.writeText(text);
+  alert("تم نسخ الزخرفة!");
+}
+</script>
 
-    // Build englishGenerators: use every key in englishMaps and create some variants
-    for (const key in englishMaps){
-      const mapStr = englishMaps[key];
-      englishGenerators.push(n => mapConvert(n, mapStr));
-      englishGenerators.push(n => mapConvert(n, mapStr).split('').join(' ')); // spaced
-      englishGenerators.push(n => mapConvert(n, mapStr).split('').join('\u200A')); // thin spaced
-      englishGenerators.push(n => mapConvert(n, mapStr).split('').map(c=>c+c).join('')); // doubled
-    }
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Amiri&family=Cairo:wght@400;700&family=Changa&family=El+Messiri&family=Montserrat:wght@500&family=Merriweather&family=Noto+Naskh+Arabic&family=Pacifico&family=Playfair+Display&family=Poppins&family=Raleway&family=Reem+Kufi&family=Roboto&family=Scheherazade+New&display=swap" rel="stylesheet">
 
-    // add custom extras
-    customEnglishExtras.forEach(fn => englishGenerators.push(fn));
-
-    // add englishStyleGenerators (the automatic group from earlier) if exists
-    // (we created englishStyleGenerators earlier, but here reuse englishMaps variants)
-    // also add crafted variety patterns: camelCase, studly, reversed, odd upper, even upper
-    englishGenerators.push(n => n.split('').map((c,i)=> i%2? c.toLowerCase(): c.toUpperCase()).join(''));
-    englishGenerators.push(n => n.split('').map((c,i)=> i%2? mapConvert(c, englishMaps.bold) : mapConvert(c, englishMaps.cursive)).join(''));
-    englishGenerators.push(n => mapConvert(n, englishMaps.fullwidth));
-    englishGenerators.push(n => mapConvert(n, englishMaps.serifBold));
-    englishGenerators.push(n => mapConvert(n, englishMaps.mathBoldItalic));
-    englishGenerators.push(n => mapConvert(n, englishMaps.fraktur));
-    englishGenerators.push(n => mapConvert(n, englishMaps.monospace));
-    englishGenerators.push(n => mapConvert(n, englishMaps.smallcaps));
-    englishGenerators.push(n => mapConvert(n, englishMaps.cursive).replace(/ /g,''));
-    englishGenerators.push(n => mapConvert(n, englishMaps.double).split('').reverse().join(''));
-    englishGenerators.push(n => mapConvert(n, englishMaps.bold).split('').join('\u200A'));
-    englishGenerators.push(n => mapConvert(n, englishMaps.serif).split('').join('\u200A'));
-    englishGenerators.push(n => mapConvert(n, englishMaps.circled));
-
-    // Make sure we have many unique functions; remove duplicates by stringified output for a sample name
-    function uniqueGenerators(genList, sample='sung'){
-      const seen = new Set();
-      const out = [];
-      for(const g of genList){
-        try{
-          const val = (typeof g === 'function')? g(sample) : String(g);
-          if(!seen.has(val)){
-            seen.add(val);
-            out.push(g);
-          }
-        }catch(e){
-          // skip any generator throwing
-        }
-      }
-      return out;
-    }
-
-    // Finalize lists
-    let arabicList = uniqueGenerators(arabicGenerators.concat([],'placeholder')).slice(0,60); // aim ~60
-    // ensure at least 50
-    if(arabicList.length < 50){
-      // add some programmatic simple ones
-      for(let i=0;i<60;i++){
-        arabicList.push(n => n.split('').map((c,idx)=> idx%2? 'ـ'+c : c).join(''));
-      }
-      arabicList = uniqueGenerators(arabicList, 'محمد').slice(0,60);
-    }
-
-    let englishList = uniqueGenerators(englishGenerators.concat(customEnglishExtras), 'sung').slice(0,80);
-    if(englishList.length < 80){
-      // pad with variants
-      englishList = englishList.concat(englishList.map(fn => n => fn(n).split('').map(c=>c+c).join('')));
-      englishList = uniqueGenerators(englishList,'sung').slice(0,80);
-    }
-
-    // UI elements
-    const input = document.getElementById('nameInput');
-    const results = document.getElementById('results');
-    const tabAr = document.getElementById('tab-ar');
-    const tabEn = document.getElementById('tab-en');
-
-    let mode = 'arabic'; // default
-
-    // render function: create cards for each style
-    function render(){
-      const text = input.value.trim();
-      results.innerHTML = '';
-      if(!text) {
-        // show placeholder friendly message
-        const box = document.createElement('div');
-        box.className = 'style-box';
-        box.innerHTML = `<div class="styled-text small">اكتب الاسم في الحقل أعلاه لعرض الزخارف</div><div style="min-width:90px"></div>`;
-        results.appendChild(box);
-        return;
-      }
-
-      const gens = mode === 'arabic' ? arabicList : englishList;
-      // create fragment for performance
-      const frag = document.createDocumentFragment();
-
-      gens.forEach((g, idx) => {
-        try{
-          const styled = (typeof g === 'function')? g(text) : String(g);
-          const box = document.createElement('div');
-          box.className = 'style-box';
-          const span = document.createElement('div');
-          span.className = 'styled-text';
-          // adjust font-size for very long results
-          if(styled.length > 30) span.classList.add('small');
-          span.textContent = styled;
-
-          const btn = document.createElement('button');
-          btn.className = 'btn-copy';
-          btn.type = 'button';
-          btn.innerText = 'نسخ';
-          btn.title = 'نسخ الزخرفة';
-          btn.onclick = async () => {
-            try{
-              await navigator.clipboard.writeText(styled);
-              btn.classList.add('copied');
-              btn.innerText = '✓';
-              setTimeout(()=>{ btn.classList.remove('copied'); btn.innerText='نسخ'; }, 1100);
-            }catch(e){
-              // fallback: select & copy
-              const ta = document.createElement('textarea');
-              ta.value = styled; document.body.appendChild(ta);
-              ta.select();
-              try{ document.execCommand('copy'); }
-              catch(e) { console.error('copy failed',e) }
-              ta.remove();
-              btn.classList.add('copied'); btn.innerText='✓';
-              setTimeout(()=>{ btn.classList.remove('copied'); btn.innerText='نسخ'; }, 1100);
-            }
-          };
-
-          box.appendChild(span);
-          box.appendChild(btn);
-          frag.appendChild(box);
-        }catch(err){
-          // ignore any generator error
-        }
-      });
-
-      results.appendChild(frag);
-    }
-
-    // events
-    input.addEventListener('input', () => requestAnimationFrame(render));
-    tabAr.addEventListener('click', ()=>{ mode='arabic'; tabAr.classList.add('active'); tabEn.classList.remove('active'); render(); });
-    tabEn.addEventListener('click', ()=>{ mode='english'; tabEn.classList.add('active'); tabAr.classList.remove('active'); render(); });
-
-    // initial placeholder render
-    render();
-
-    /***************
-     * Notes:
-     * - الأنماط كثيرة ومصممة لتكون ديناميكية: أي اسم يدخله المستخدم سيُحوّل لكل نمط
-     * - يمكنك تعديل عدد الأنماط بتغيير slice(0,N) أعلاه لكل لغة أو إضافة/إزالة مولدات
-     ***************/
-  </script>
 </body>
 </html>
