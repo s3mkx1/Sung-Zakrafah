@@ -3,32 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>سونغ - موقع الزغرفة</title>
+    <title>S O N G Zghrph - موقع الزغرفة</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap" rel="stylesheet">
     <style>
         /* أنماط CSS الأساسية */
         :root {
-            --primary-color: #6a0dad;
-            --secondary-color: #ff69b4;
-            --dark-color: #1a1a2e;
+            --primary-color: #d4af37;
+            --secondary-color: #ffffff;
+            --dark-color: #1a1a1a;
             --light-color: #f8f9fa;
-            --accent-color: #00ffff;
+            --accent-color: #ffd700;
+            --gold-light: #f9e8b2;
+            --gold-dark: #b8941f;
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Almarai', sans-serif;
         }
         
         body {
             background-color: var(--dark-color);
-            color: var(--light-color);
+            color: var(--secondary-color);
             line-height: 1.6;
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(106, 13, 173, 0.1) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(255, 105, 180, 0.1) 0%, transparent 20%);
+                radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 20%);
         }
         
         .container {
@@ -40,12 +43,13 @@
         header {
             text-align: center;
             padding: 30px 0;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(135deg, var(--dark-color), #2a2a2a);
             border-radius: 15px;
             margin-bottom: 30px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
             position: relative;
             overflow: hidden;
+            border: 1px solid var(--primary-color);
         }
         
         header::before {
@@ -55,7 +59,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
             transform: rotate(30deg);
         }
         
@@ -63,16 +67,58 @@
             font-size: 3.5rem;
             margin-bottom: 10px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            background: linear-gradient(to right, #fff, var(--accent-color));
+            background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             position: relative;
+            font-weight: 800;
         }
         
         .subtitle {
             font-size: 1.2rem;
             opacity: 0.9;
             position: relative;
+            color: var(--gold-light);
+        }
+        
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            padding: 10px;
+            border: 1px solid var(--primary-color);
+        }
+        
+        .tab {
+            padding: 12px 25px;
+            background: transparent;
+            color: var(--secondary-color);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            margin: 0 5px;
+        }
+        
+        .tab.active {
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            color: var(--dark-color);
+            font-weight: bold;
+        }
+        
+        .tab:hover:not(.active) {
+            background-color: rgba(212, 175, 55, 0.2);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
         }
         
         .input-section {
@@ -80,8 +126,8 @@
             border-radius: 15px;
             padding: 25px;
             margin-bottom: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
         
         .input-group {
@@ -101,8 +147,8 @@
         .text-input {
             padding: 15px;
             border-radius: 10px;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            background-color: rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            background-color: rgba(0, 0, 0, 0.5);
             color: white;
             font-size: 1.1rem;
             text-align: center;
@@ -111,13 +157,13 @@
         
         .text-input:focus {
             outline: none;
-            border-color: var(--secondary-color);
-            box-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
         }
         
         .generate-btn {
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-            color: white;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            color: var(--dark-color);
             border: none;
             padding: 15px 30px;
             border-radius: 10px;
@@ -125,6 +171,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            font-weight: bold;
         }
         
         .generate-btn:hover {
@@ -140,8 +187,8 @@
             text-align: center;
             margin: 25px 0;
             font-size: 1.5rem;
-            color: var(--secondary-color);
-            text-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
+            color: var(--accent-color);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
             padding: 10px 0;
         }
         
@@ -150,8 +197,8 @@
             border-radius: 15px;
             padding: 25px;
             margin-bottom: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s ease;
         }
         
@@ -162,7 +209,7 @@
         .category-title {
             font-size: 1.8rem;
             margin-bottom: 20px;
-            color: var(--secondary-color);
+            color: var(--accent-color);
             text-align: center;
             padding-bottom: 15px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -179,13 +226,13 @@
         }
         
         .font-item {
-            background: linear-gradient(145deg, rgba(0, 0, 0, 0.3), rgba(255, 255, 255, 0.05));
+            background: linear-gradient(145deg, rgba(0, 0, 0, 0.3), rgba(212, 175, 55, 0.1));
             padding: 20px;
             border-radius: 12px;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.2);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             display: flex;
             flex-direction: column;
@@ -195,8 +242,8 @@
         .font-item:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-            background: linear-gradient(145deg, rgba(106, 13, 173, 0.2), rgba(255, 105, 180, 0.1));
-            border-color: rgba(255, 105, 180, 0.3);
+            background: linear-gradient(145deg, rgba(212, 175, 55, 0.2), rgba(255, 215, 0, 0.1));
+            border-color: rgba(255, 215, 0, 0.5);
         }
         
         .font-preview {
@@ -208,12 +255,13 @@
             justify-content: center;
             padding: 10px;
             border-radius: 8px;
-            background-color: rgba(0, 0, 0, 0.2);
+            background-color: rgba(0, 0, 0, 0.3);
+            font-family: 'Arial', sans-serif;
         }
         
         .copy-btn {
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-            color: white;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            color: var(--dark-color);
             border: none;
             padding: 10px 20px;
             border-radius: 8px;
@@ -224,6 +272,7 @@
             justify-content: center;
             gap: 8px;
             font-size: 1rem;
+            font-weight: bold;
         }
         
         .copy-btn:hover {
@@ -231,13 +280,38 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
         
+        .symbols-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 15px;
+        }
+        
+        .symbol-item {
+            background: linear-gradient(145deg, rgba(0, 0, 0, 0.3), rgba(212, 175, 55, 0.1));
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            font-size: 1.5rem;
+        }
+        
+        .symbol-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(145deg, rgba(212, 175, 55, 0.2), rgba(255, 215, 0, 0.1));
+            border-color: rgba(255, 215, 0, 0.5);
+        }
+        
         footer {
             text-align: center;
             padding: 30px;
             margin-top: 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.7);
-            background-color: rgba(0, 0, 0, 0.2);
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            color: var(--gold-light);
+            background-color: rgba(0, 0, 0, 0.3);
             border-radius: 15px;
         }
         
@@ -250,7 +324,7 @@
         }
         
         .footer-icons i {
-            color: var(--secondary-color);
+            color: var(--accent-color);
             transition: transform 0.3s ease;
         }
         
@@ -260,7 +334,7 @@
         
         /* أنماط متجاوبة */
         @media (max-width: 768px) {
-            .fonts-grid {
+            .fonts-grid, .symbols-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -270,6 +344,11 @@
             
             .category-title {
                 font-size: 1.5rem;
+            }
+            
+            .tabs {
+                flex-direction: column;
+                gap: 10px;
             }
         }
         
@@ -288,27 +367,43 @@
             position: fixed;
             top: 20px;
             right: 20px;
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-            color: white;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            color: var(--dark-color);
             padding: 15px 25px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             transform: translateX(150%);
             transition: transform 0.5s ease;
             z-index: 1000;
+            font-weight: bold;
         }
         
         .notification.show {
             transform: translateX(0);
+        }
+        
+        /* خط Sung */
+        @font-face {
+            font-family: 'Sung';
+            src: url('https://fonts.cdnfonts.com/css/sung') format('woff2');
+        }
+        
+        .sung-font {
+            font-family: 'Sung', 'Almarai', sans-serif;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>سونغ</h1>
+            <h1 class="sung-font">S O N G Zghrph</h1>
             <p class="subtitle">موقع زخرفة الأسماء والرموز - أدخل النص الخاص بك</p>
         </header>
+        
+        <div class="tabs">
+            <button class="tab active" data-tab="fonts">الزخارف</button>
+            <button class="tab" data-tab="symbols">الرموز</button>
+        </div>
         
         <section class="input-section">
             <div class="input-group">
@@ -320,116 +415,81 @@
             </div>
         </section>
         
-        <div class="decorative-border">
-            ╮⟐┈┈┈┉⊱•┇❄️┇•⊰┉┈┈┈⟐╭
+        <div class="tab-content active" id="fonts-tab">
+            <div class="decorative-border">
+                ╮⟐┈┈┈┉⊱•┇❄️┇•⊰┉┈┈┈⟐╭
+            </div>
+            
+            <section class="category">
+                <h2 class="category-title">
+                    <i class="fas fa-link"></i> 𝗠꯭ٌَُٰٰ𝗜ּ𝗥̸̷̶𝗢̸̷̶ 𝗟̸̷̶𝗜ּ͟𝗡̷̸̈𝗞
+                </h2>
+                <div class="fonts-grid" id="category1">
+                    <!-- سيتم ملء هذا القسم بالجافاسكريبت -->
+                </div>
+            </section>
+            
+            <div class="decorative-border">
+                ⋅⋅• ❅ ━─ ━ ╃╷🎐╵╄ ─━ ━ ❅ •⋅⋅
+            </div>
+            
+            <section class="category">
+                <h2 class="category-title">
+                    <i class="fas fa-home"></i> 𝐖𝖾𝗅𝖼᧑ꭑ𝖾 𝗍᧑ 𝐎𝗎𝗋 𝐏𝗅⍺𝖼𝖾
+                </h2>
+                <div class="fonts-grid" id="category2">
+                    <!-- سيتم ملء هذا القسم بالجافاسكريبت -->
+                </div>
+            </section>
+            
+            <div class="decorative-border">
+                ✥━═━═• 《•🎸•》•═━═━✥
+            </div>
+            
+            <section class="category">
+                <h2 class="category-title">
+                    <i class="fas fa-robot"></i> 𝐌 𝐀 𝐃 𝐀 𝐑 𝐀 - 𝐁 𝐎 𝐓
+                </h2>
+                <div class="fonts-grid" id="category3">
+                    <!-- سيتم ملء هذا القسم بالجافاسكريبت -->
+                </div>
+            </section>
+            
+            <div class="decorative-border">
+                ⎔ ⋅ ───━ •﹝💮﹞• ━─── ⋅ *
+            </div>
+            
+            <section class="category">
+                <h2 class="category-title">
+                    <i class="fas fa-brain"></i> 𝙼𝙰𝙸 𝙰𝙸
+                </h2>
+                <div class="fonts-grid" id="category4">
+                    <!-- سيتم ملء هذا القسم بالجافاسكريبت -->
+                </div>
+            </section>
         </div>
         
-        <section class="category">
-            <h2 class="category-title">
-                <i class="fas fa-link"></i> 𝗠꯭ٌَُٰٰ𝗜ּ𝗥̸̷̶𝗢̸̷̶ 𝗟̸̷̶𝗜ּ͟𝗡̷̸̈𝗞
-            </h2>
-            <div class="fonts-grid" id="category1">
-                <!-- سيتم ملء هذا القسم بالجافاسكريبت -->
+        <div class="tab-content" id="symbols-tab">
+            <div class="decorative-border">
+                ✫・✦━━✩ ⌟♦️⌞ ✩━━✦・✫
             </div>
-        </section>
-        
-        <div class="decorative-border">
-            ⋅⋅• ❅ ━─ ━ ╃╷🎐╵╄ ─━ ━ ❅ •⋅⋅
+            
+            <section class="category">
+                <h2 class="category-title">
+                    <i class="fas fa-icons"></i> رموز زخرفية
+                </h2>
+                <div class="symbols-grid" id="symbols-container">
+                    <!-- سيتم ملء هذا القسم بالجافاسكريبت -->
+                </div>
+            </section>
         </div>
-        
-        <section class="category">
-            <h2 class="category-title">
-                <i class="fas fa-home"></i> 𝐖𝖾𝗅𝖼᧑ꭑ𝖾 𝗍᧑ 𝐎𝗎𝗋 𝐏𝗅⍺𝖼𝖾
-            </h2>
-            <div class="fonts-grid" id="category2">
-                <!-- سيتم ملء هذا القسم بالجافاسكريبت -->
-            </div>
-        </section>
-        
-        <div class="decorative-border">
-            ✥━═━═• 《•🎸•》•═━═━✥
-        </div>
-        
-        <section class="category">
-            <h2 class="category-title">
-                <i class="fas fa-robot"></i> 𝐌 𝐀 𝐃 𝐀 𝐑 𝐀 - 𝐁 𝐎 𝐓
-            </h2>
-            <div class="fonts-grid" id="category3">
-                <!-- سيتم ملء هذا القسم بالجافاسكريبت -->
-            </div>
-        </section>
-        
-        <div class="decorative-border">
-            ⎔ ⋅ ───━ •﹝💮﹞• ━─── ⋅ *
-        </div>
-        
-        <section class="category">
-            <h2 class="category-title">
-                <i class="fas fa-brain"></i> 𝙼𝙰𝙸 𝙰𝙸
-            </h2>
-            <div class="fonts-grid" id="category4">
-                <!-- سيتم ملء هذا القسم بالجافاسكريبت -->
-            </div>
-        </section>
-        
-        <div class="decorative-border">
-            ✫・✦━━✩ ⌟♦️⌞ ✩━━✦・✫
-        </div>
-        
-        <section class="category">
-            <h2 class="category-title">
-                <i class="fas fa-ghost"></i> 𝑆𝐻𝛩𝐷𝛩𝑊 𝐵𝛩𝑇
-            </h2>
-            <div class="fonts-grid" id="category5">
-                <!-- سيتم ملء هذا القسم بالجافاسكريبت -->
-            </div>
-        </section>
-        
-        <div class="decorative-border">
-            ◯┉╌⎔ ╌━︱♋︎︱ ━╌ ⎔╌┉◯
-        </div>
-        
-        <section class="category">
-            <h2 class="category-title">
-                <i class="fas fa-bolt"></i> 𝐒𝐏𝐄𝐄𝐃 𝐇𝐎𝐒𝐓
-            </h2>
-            <div class="fonts-grid" id="category6">
-                <!-- سيتم ملء هذا القسم بالجافاسكريبت -->
-            </div>
-        </section>
-        
-        <div class="decorative-border">
-            *◉━━─ • ༺ ˹🕷˼ ༻ • ─━━◉*
-        </div>
-        
-        <section class="category">
-            <h2 class="category-title">
-                <i class="fas fa-sticky-note"></i> 𝑻𝖊𝘴𝐬𝗂𝒂  𝑺𝒕𝗶𝗰𝗸𝗲𝗿
-            </h2>
-            <div class="fonts-grid" id="category7">
-                <!-- سيتم ملء هذا القسم بالجافاسكريبت -->
-            </div>
-        </section>
-        
-        <div class="decorative-border">
-            ⎔───━ ━ • ⊰ 📓 ⊱ • ━ ━───⎔
-        </div>
-        
-        <section class="category">
-            <h2 class="category-title">
-                <i class="fas fa-external-link-alt"></i> 𝑇ℎ𝑒 𝑙𝑖𝑛𝑘
-            </h2>
-            <div class="fonts-grid" id="category8">
-                <!-- سيتم ملء هذا القسم بالجافاسكريبت -->
-            </div>
-        </section>
         
         <div class="decorative-border">
             •❅──────✧❅🧬❅✧──────❅•
         </div>
         
         <footer>
-            <p>سونغ - موقع زخرفة الأسماء © 2023</p>
+            <p>SONG Zghrph - موقع زخرفة الأسماء © 2023</p>
             <p>أدخل أي نص لتحصل على زخارف متنوعة وجميلة</p>
             <div class="footer-icons">
                 <i class="fab fa-instagram"></i>
@@ -472,36 +532,22 @@
                 { name: "زخرفة 3", template: "ₐBCDₑFGₕᵢⱼₖₗₘₙₒPQᵣₛₜᵤᵥWₓYZ", type: "subscript" },
                 { name: "زخرفة 4", template: "ᴬᴮᶜᴰᴱᶠᴳᴴᴵᴶᴷᴸᴹᴺᴼᴾᵟᴿˢᵀᵁⱽᵂˣʸᶻ", type: "superscript" },
                 { name: "زخرفة 5", template: "αႦƈԃҽϝɠԋιʝƙʅɱɳσρϙɾʂƚυʋɯxყȥ", type: "cursive" }
-            ],
-            category5: [
-                { name: "زخرفة 1", template: "𝕬𝕭𝕮𝕯𝕰𝕱𝕲𝕳𝕴𝕵𝕶𝕷𝕸𝕹𝕺𝕻𝕼𝕽𝕾𝕿𝖀𝖁𝖂𝖃𝖄𝖅", type: "double-struck" },
-                { name: "زخرفة 2", template: "ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ", type: "fullwidth-alt" },
-                { name: "زخرفة 3", template: "Ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ", type: "fullwidth-mixed" },
-                { name: "زخرفة 4", template: "𝒜𝐵𝒞𝒟𝐸𝐹𝒢𝐻𝐼𝒥𝒦𝐿𝑀𝒩𝒪𝒫𝒬𝑅𝒮𝒯𝒰𝒱𝒲𝒳𝒴𝒵", type: "script-bold" },
-                { name: "زخرفة 5", template: "𝓐𝓑𝓒𝓓𝓔𝓕𝓖𝓗𝓘𝓙𝓚𝓛𝓜𝓝𝓞𝓟𝓠𝓡𝓢𝓣𝓤𝓥𝓦𝓧𝓨𝓩", type: "script-italic" }
-            ],
-            category6: [
-                { name: "زخرفة 1", template: "🇦 🇧 🇨 🇩 🇪 🇫 🇬 🇭 🇮 🇯 🇰 🇱 🇲 🇳 🇴 🇵 🇶 🇷 🇸 🇹 🇺 🇻 🇼 🇽 🇾 🇿", type: "flags" },
-                { name: "زخرفة 2", template: "🅰🅱🅲🅳🅴🅵🅶🅷🅸🅹🅺🅻🅼🅽🅾🅿🆀🆁🆂🆃🆄🆅🆆🆇🆈🆉", type: "negative-circle" },
-                { name: "زخرفة 3", template: "𝔸𝔹ℂ𝔻𝔼𝔽𝔾ℍ𝕀𝕁𝕂𝕃𝕄ℕ𝕆ℙℚℝ𝕊𝕋𝕌𝕍𝕎𝕏𝕐ℤ", type: "blackboard" },
-                { name: "زخرفة 4", template: "ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ", type: "fullwidth-bold" },
-                { name: "زخرفة 5", template: "ᗩᗷᑕᗪEᖴGᕼIᒍKᒪᗰᑎOᑭᑫᖇᔕTᑌᐯᗯ᙭Yᘔ", type: "unique" }
-            ],
-            category7: [
-                { name: "زخرفة 1", template: "αв¢∂єƒgнιנкℓмησρqяѕтυνωχуz", type: "cursive-alt" },
-                { name: "زخرفة 2", template: "ǟɮƈɖɛʄɢɦɨʝӄʟʍռօքզʀֆȶʊʋաӼʏʐ", type: "gothic" },
-                { name: "زخرفة 3", template: "ᏗᏰፈᎴᏋᎦᎶᏂᎥᏠᏦᏝᎷᏁᎧᎮᎤᏒᏕᏖᏬᏉᏇጀᎩፚ", type: "native" },
-                { name: "زخرفة 4", template: "ค๒ς๔єŦﻮђเןкɭ๓ภ๏קợгรtยvฬץא", type: "thai" },
-                { name: "زخرفة 5", template: "ᴀʙᴄᴅᴇꜰɢʜɪᴊᴋʟᴍɴᴏᴘQʀꜱᴛᴜᴠᴡxʏᴢ", type: "small-caps-alt" }
-            ],
-            category8: [
-                { name: "زخرفة 1", template: "🄰🄱🄲🄳🄴🄵🄶🄷🄸🄹🄺🄻🄼🄽🄾🄿🅀🅁🅂🅃🅄🅅🅆🅇🅈🅉", type: "square-negative" },
-                { name: "زخرفة 2", template: "Ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ", type: "fullwidth-lower" },
-                { name: "زخرفة 3", template: "ᴀ ʙ ᴄ ᴅ ᴇ ꜰ ɢ ʜ ɪ ᴊ ᴋ ʟ ᴍ ɴ ᴏ ᴘ ǫ ʀ ꜱ ᴛ ᴜ ᴠ ᴡ x ʏ ᴢ", type: "small-caps-spaced" },
-                { name: "زخرفة 4", template: "A҉B҉C҉D҉E҉F҉G҉H҉I҉J҉K҉L҉M҉N҉O҉P҉Q҉R҉S҉T҉U҉V҉W҉X҉Y҉Z҉", type: "sparkles" },
-                { name: "زخرفة 5", template: "A͓̽B͓̽C͓̽D͓̽E͓̽F͓̽G͓̽H͓̽I͓̽J͓̽K͓̽L͓̽M͓̽N͓̽O͓̽P͓̽Q͓̽R͓̽S͓̽T͓̽U͓̽V͓̽W͓̽X͓̽Y͓̽Z͓̽", type: "shadow" }
             ]
         };
+
+        // بيانات الرموز
+        const symbolsData = [
+            "❖", "⎔", "⟐", "꒷", "◞", "◜", "◯", "⌲", "𝆺𝅥", "𝆹𝅥", "⁞", "➩", "┊", "★", "•", "↯",
+            "❀", "🐉", "⭑", "๋", "꒦", "︶", "⏝", "୨", "୧", "˖", "࣪", "⸼", "۫", "ָ", "ֶ", "ִ",
+            "ֺ", "𖥻", "۶", "⊹", "ৎ", "‿", "︵", "𝅭", "ꢾ", "𓍢", "ִ", "໋", "⎯", "ㅤ", "▭", "▬",
+            "࣪", "⫘", "〄", "╾", "────", "⚜︎", "🎃", "╼", "☆", "━━", "★", "┄", "📿", "⊰", "┇",
+            "❍", "━", "═", "✦", "⚔️", "⊱", "✾", "◜", "⤣", "❄", "⤤", "◞", "✥", "❊", "٠", "┈",
+            "─", "╼", "˼", "ナ", "ギ", "˹", "╾", "┈", "𝄗", "𝄘", "🐚", "˖", "˛", "﹝", "﹞", "🌸",
+            "💣", "‹", "›", "⋅", "┈", "🔆", "⌯", "━━", "─", "༺", "˹", "🕷", "˼", "༻", "◉", "♋︎",
+            "︱", "━", "╌", "♦️", "⌟", "⌞", "✩", "・", "✫", "﹝", "💮", "﹞", "━━", "─", "⋅", "*",
+            "🎸", "《", "》", "━", "═", "✥", "☕", "╯", "❖", "✤", "╬", "‧", "₊", "˚", "꒥", "꒷",
+            "︶", "꒷", "╯", "╭", "❄️", "⊰", "⊱", "┉", "┈", "╮", "❂", "╎", "الـفـرع", "|", "𝟏", "الأول"
+        ];
 
         // وظيفة لتحويل النص إلى زخرفة
         function convertText(text, template) {
@@ -569,6 +615,25 @@
             }
         }
         
+        // وظيفة لملء قسم الرموز
+        function populateSymbols() {
+            const container = document.getElementById('symbols-container');
+            container.innerHTML = ""; // مسح المحتوى القديم
+            
+            symbolsData.forEach(symbol => {
+                const symbolItem = document.createElement('div');
+                symbolItem.className = 'symbol-item';
+                symbolItem.textContent = symbol;
+                
+                symbolItem.addEventListener('click', () => {
+                    copyToClipboard(symbol);
+                    showNotification('تم نسخ الرمز: ' + symbol);
+                });
+                
+                container.appendChild(symbolItem);
+            });
+        }
+        
         // وظيفة نسخ النص إلى الحافظة
         function copyToClipboard(text) {
             const textarea = document.createElement('textarea');
@@ -590,9 +655,31 @@
             }, 3000);
         }
         
+        // وظيفة تبديل التبويبات
+        function setupTabs() {
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const tabId = tab.getAttribute('data-tab');
+                    
+                    // إزالة النشاط من جميع التبويبات والمحتويات
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(tc => tc.classList.remove('active'));
+                    
+                    // إضافة النشاط للتبويب والمحتوى المحدد
+                    tab.classList.add('active');
+                    document.getElementById(`${tabId}-tab`).classList.add('active');
+                });
+            });
+        }
+        
         // تشغيل الوظيفة عند تحميل الصفحة
         document.addEventListener('DOMContentLoaded', () => {
             populateFonts();
+            populateSymbols();
+            setupTabs();
             
             // إضافة حدث لزر التوليد
             document.getElementById('generateBtn').addEventListener('click', () => {
@@ -608,3 +695,10 @@
             // إضافة حدث عند الضغط على Enter في حقل الإدخال
             document.getElementById('userText').addEventListener('keyup', (event) => {
                 if (event.key === 'Enter') {
+                    document.getElementById('generateBtn').click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
