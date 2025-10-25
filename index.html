@@ -3,114 +3,280 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S O N G Zghrph - موقع الزغرفة</title>
+    <title>حاسبة الحروف ومغير الخطوط</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap" rel="stylesheet">
     <style>
-        /* أنماط CSS الأساسية */
         :root {
-            --primary-color: #b8941f;
-            --secondary-color: #ffffff;
-            --dark-color: #1a1a1a;
+            --primary-color: #4a6ee0;
+            --secondary-color: #6c757d;
+            --accent-color: #ff6b6b;
             --light-color: #f8f9fa;
-            --accent-color: #d4af37;
-            --gold-light: #e6d7a8;
-            --gold-dark: #9c7e15;
+            --dark-color: #343a40;
+            --success-color: #28a745;
+            --border-radius: 12px;
+            --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Almarai', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            background-color: var(--dark-color);
-            color: var(--secondary-color);
+            background-color: #f5f7fb;
+            color: var(--dark-color);
             line-height: 1.6;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(184, 148, 31, 0.05) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 20%);
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 15px;
+            padding: 20px;
         }
         
         header {
             text-align: center;
-            padding: 12px 0;
-            background: linear-gradient(135deg, var(--dark-color), #2a2a2a);
-            border-radius: 8px;
-            margin-bottom: 15px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
-            position: relative;
-            overflow: hidden;
-            border: 1px solid var(--primary-color);
-        }
-        
-        header::before {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(184, 148, 31, 0.05) 0%, transparent 70%);
-            transform: rotate(30deg);
+            margin-bottom: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
         }
         
         h1 {
-            font-size: 1.8rem;
-            margin-bottom: 5px;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-            background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            position: relative;
-            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 2.5rem;
         }
         
         .subtitle {
-            font-size: 0.8rem;
-            opacity: 0.9;
-            position: relative;
-            color: var(--gold-light);
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .card {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 25px;
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-title {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e9ecef;
+            font-size: 1.5rem;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+        
+        textarea, select, input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        textarea:focus, select:focus, input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        .btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: background 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn:hover {
+            background: #3a5ecf;
+        }
+        
+        .btn-copy {
+            background: var(--success-color);
+        }
+        
+        .btn-copy:hover {
+            background: #218838;
+        }
+        
+        .result-box {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            min-height: 50px;
+            border: 1px dashed #dee2e6;
+            font-size: 1.1rem;
+            word-break: break-word;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            margin-top: 5px;
+        }
+        
+        .fonts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .font-item {
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .font-item:hover {
+            border-color: var(--primary-color);
+            background: #f0f4ff;
+        }
+        
+        .font-item.active {
+            border-color: var(--primary-color);
+            background: #e6eeff;
+        }
+        
+        .font-preview {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .font-name {
+            font-size: 0.85rem;
+            color: var(--secondary-color);
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--success-color);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transform: translateX(150%);
+            transition: transform 0.5s ease;
+            z-index: 1000;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
         }
         
         .tabs {
             display: flex;
-            justify-content: center;
-            margin-bottom: 15px;
-            background-color: rgba(0, 0, 0, 0.5);
-            border-radius: 8px;
-            padding: 6px;
-            border: 1px solid var(--primary-color);
+            margin-bottom: 20px;
+            border-bottom: 1px solid #e9ecef;
         }
         
         .tab {
-            padding: 8px 16px;
-            background: transparent;
-            color: var(--secondary-color);
+            padding: 12px 25px;
+            background: none;
             border: none;
-            border-radius: 6px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-            margin: 0 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
         }
         
         .tab.active {
-            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
-            color: var(--dark-color);
-            font-weight: bold;
-        }
-        
-        .tab:hover:not(.active) {
-            background-color: rgba(184, 148, 31, 0.2);
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
         }
         
         .tab-content {
@@ -120,437 +286,183 @@
         .tab-content.active {
             display: block;
         }
-        
-        .input-section {
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 20px;
-            border: 1px solid rgba(184, 148, 31, 0.3);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
-        }
-        
-        .input-group {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-        
-        .input-label {
-            font-size: 1rem;
-            color: var(--accent-color);
-            text-align: center;
-        }
-        
-        .text-input {
-            padding: 10px;
-            border-radius: 6px;
-            border: 1px solid rgba(184, 148, 31, 0.3);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            font-size: 0.9rem;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-        
-        .text-input:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 6px rgba(184, 148, 31, 0.5);
-        }
-        
-        .generate-btn {
-            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
-            color: var(--dark-color);
-            border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-            font-weight: bold;
-        }
-        
-        .generate-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-        }
-        
-        .generate-btn:active {
-            transform: translateY(1px);
-        }
-        
-        .decorative-border {
-            text-align: center;
-            margin: 15px 0;
-            font-size: 1.1rem;
-            color: var(--accent-color);
-            text-shadow: 0 0 6px rgba(212, 175, 55, 0.5);
-            padding: 6px 0;
-        }
-        
-        .category {
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 20px;
-            border: 1px solid rgba(184, 148, 31, 0.3);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease;
-        }
-        
-        .category:hover {
-            transform: translateY(-2px);
-        }
-        
-        .category-title {
-            font-size: 1.3rem;
-            margin-bottom: 12px;
-            color: var(--accent-color);
-            text-align: center;
-            padding-bottom: 10px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-        }
-        
-        .fonts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 12px;
-        }
-        
-        .font-item {
-            background: linear-gradient(145deg, rgba(0, 0, 0, 0.3), rgba(184, 148, 31, 0.1));
-            padding: 12px;
-            border-radius: 8px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(184, 148, 31, 0.2);
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        
-        .font-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            background: linear-gradient(145deg, rgba(184, 148, 31, 0.15), rgba(212, 175, 55, 0.1));
-            border-color: rgba(212, 175, 55, 0.4);
-        }
-        
-        .font-preview {
-            font-size: 1.3rem;
-            margin-bottom: 6px;
-            min-height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 6px;
-            border-radius: 5px;
-            background-color: rgba(0, 0, 0, 0.3);
-            font-family: 'Arial', sans-serif;
-        }
-        
-        .copy-btn {
-            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
-            color: var(--dark-color);
-            border: none;
-            padding: 6px 12px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
-        
-        .copy-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-        }
-        
-        .symbols-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-            gap: 10px;
-        }
-        
-        .symbol-item {
-            background: linear-gradient(145deg, rgba(0, 0, 0, 0.3), rgba(184, 148, 31, 0.1));
-            padding: 12px;
-            border-radius: 8px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(184, 148, 31, 0.2);
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-            font-size: 1.1rem;
-        }
-        
-        .symbol-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            background: linear-gradient(145deg, rgba(184, 148, 31, 0.15), rgba(212, 175, 55, 0.1));
-            border-color: rgba(212, 175, 55, 0.4);
-        }
-        
-        footer {
-            text-align: center;
-            padding: 20px;
-            margin-top: 25px;
-            border-top: 1px solid rgba(184, 148, 31, 0.3);
-            color: var(--gold-light);
-            background-color: rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
-        }
-        
-        .footer-icons {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-top: 10px;
-            font-size: 1.1rem;
-        }
-        
-        .footer-icons i {
-            color: var(--accent-color);
-            transition: transform 0.3s ease;
-        }
-        
-        .footer-icons i:hover {
-            transform: translateY(-2px);
-        }
-        
-        /* أنماط متجاوبة */
-        @media (max-width: 768px) {
-            .fonts-grid, .symbols-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            h1 {
-                font-size: 1.5rem;
-            }
-            
-            .category-title {
-                font-size: 1.1rem;
-            }
-            
-            .tabs {
-                flex-direction: column;
-                gap: 6px;
-            }
-            
-            .symbols-grid {
-                grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
-            }
-        }
-        
-        /* تأثيرات للرموز */
-        .symbol {
-            display: inline-block;
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-6px); }
-        }
-        
-        .notification {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
-            color: var(--dark-color);
-            padding: 10px 16px;
-            border-radius: 6px;
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
-            transform: translateX(150%);
-            transition: transform 0.5s ease;
-            z-index: 1000;
-            font-weight: bold;
-            font-size: 0.8rem;
-        }
-        
-        .notification.show {
-            transform: translateX(0);
-        }
-        
-        /* خط أنيق */
-        .elegant-font {
-            font-family: 'Almarai', 'Arial', sans-serif;
-            letter-spacing: 1px;
-        }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1 class="elegant-font">S O N G Zghrph</h1>
-            <p class="subtitle">موقع زخرفة النصوص والرموز - أدخل النص الخاص بك</p>
+            <h1>حاسبة الحروف ومغير الخطوط</h1>
+            <p class="subtitle">عدّ الحروف، الكلمات، السطور وغيرها مع إمكانية تغيير الخطوط</p>
         </header>
         
-        <div class="tabs">
-            <button class="tab active" data-tab="fonts">الزخارف</button>
-            <button class="tab" data-tab="symbols">الرموز</button>
-        </div>
-        
-        <section class="input-section">
-            <div class="input-group">
-                <label for="userText" class="input-label">أدخل النص الذي تريد تزغرفه</label>
-                <input type="text" id="userText" class="text-input" placeholder="اكتب النص هنا..." value="Text">
-                <button id="generateBtn" class="generate-btn">
-                    <i class="fas fa-magic"></i> توليد الزخارف
-                </button>
-            </div>
-        </section>
-        
-        <div class="tab-content active" id="fonts-tab">
-            <div class="decorative-border">
-                ╮⟐┈┈┈┉⊱•┇❄️┇•⊰┉┈┈┈⟐╭
-            </div>
-            
-            <section class="category">
-                <h2 class="category-title">
-                    <i class="fas fa-link"></i> 𝗠꯭ٌَُٰٰ𝗜ּ𝗥̸̷̶𝗢̸̷̶ 𝗟̸̷̶𝗜ּ͟𝗡̷̸̈𝗞
-                </h2>
-                <div class="fonts-grid" id="category1">
-                    <!-- سيتم ملء هذا القسم بالجافاسكريبت -->
+        <div class="main-content">
+            <div class="card">
+                <h2 class="card-title">حاسبة النص</h2>
+                <div class="input-group">
+                    <label for="textInput">أدخل النص الخاص بك:</label>
+                    <textarea id="textInput" placeholder="اكتب أو الصق النص هنا...">مرحبا بك في موقع حاسبة الحروف ومغير الخطوط. يمكنك استخدام هذه الأداة لعد الحروف والكلمات وتغيير الخطوط.</textarea>
                 </div>
-            </section>
-            
-            <div class="decorative-border">
-                ⋅⋅• ❅ ━─ ━ ╃╷🎐╵╄ ─━ ━ ❅ •⋅⋅
+                
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-value" id="charCount">0</div>
+                        <div class="stat-label">الحروف</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="wordCount">0</div>
+                        <div class="stat-label">الكلمات</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="lineCount">0</div>
+                        <div class="stat-label">السطور</div>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn" id="clearBtn">
+                        <i class="fas fa-eraser"></i> مسح النص
+                    </button>
+                    <button class="btn btn-copy" id="copyTextBtn">
+                        <i class="far fa-copy"></i> نسخ النص
+                    </button>
+                </div>
             </div>
             
-            <section class="category">
-                <h2 class="category-title">
-                    <i class="fas fa-home"></i> 𝐖𝖾𝗅𝖼᧑ꭑ𝖾 𝗍᧑ 𝐎𝗎𝗋 𝐏𝗅⍺𝖼𝖾
-                </h2>
-                <div class="fonts-grid" id="category2">
-                    <!-- سيتم ملء هذا القسم بالجافاسكريبت -->
+            <div class="card">
+                <h2 class="card-title">مغير الخطوط</h2>
+                
+                <div class="tabs">
+                    <button class="tab active" data-tab="fonts">الخطوط</button>
+                    <button class="tab" data-tab="decorations">الزخارف</button>
                 </div>
-            </section>
-            
-            <div class="decorative-border">
-                ✥━═━═• 《•🎸•》•═━═━✥
+                
+                <div class="tab-content active" id="fonts-tab">
+                    <div class="input-group">
+                        <label for="fontPreview">معاينة الخط:</label>
+                        <div class="result-box" id="fontPreview">نص المعاينة</div>
+                    </div>
+                    
+                    <div class="fonts-grid" id="fontsContainer">
+                        <!-- سيتم ملؤها بالجافاسكريبت -->
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="decorations-tab">
+                    <div class="input-group">
+                        <label for="decorationPreview">معاينة الزخرفة:</label>
+                        <div class="result-box" id="decorationPreview">نص المعاينة</div>
+                    </div>
+                    
+                    <div class="fonts-grid" id="decorationsContainer">
+                        <!-- سيتم ملؤها بالجافاسكريبت -->
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn btn-copy" id="copyFontBtn">
+                        <i class="far fa-copy"></i> نسخ النص المزخرف
+                    </button>
+                </div>
             </div>
-            
-            <section class="category">
-                <h2 class="category-title">
-                    <i class="fas fa-robot"></i> 𝐌 𝐀 𝐃 𝐀 𝐑 𝐀 - 𝐁 𝐎 𝐓
-                </h2>
-                <div class="fonts-grid" id="category3">
-                    <!-- سيتم ملء هذا القسم بالجافاسكريبت -->
-                </div>
-            </section>
-            
-            <div class="decorative-border">
-                ⎔ ⋅ ───━ •﹝💮﹞• ━─── ⋅ *
-            </div>
-            
-            <section class="category">
-                <h2 class="category-title">
-                    <i class="fas fa-brain"></i> 𝙼𝙰𝙸 𝙰𝙸
-                </h2>
-                <div class="fonts-grid" id="category4">
-                    <!-- سيتم ملء هذا القسم بالجافاسكريبت -->
-                </div>
-            </section>
-        </div>
-        
-        <div class="tab-content" id="symbols-tab">
-            <div class="decorative-border">
-                ✫・✦━━✩ ⌟♦️⌞ ✩━━✦・✫
-            </div>
-            
-            <section class="category">
-                <h2 class="category-title">
-                    <i class="fas fa-icons"></i> رموز زخرفية
-                </h2>
-                <div class="symbols-grid" id="symbols-container">
-                    <!-- سيتم ملء هذا القسم بالجافاسكريبت -->
-                </div>
-            </section>
-        </div>
-        
-        <div class="decorative-border">
-            •❅──────✧❅🧬❅✧──────❅•
         </div>
         
         <footer>
-            <p>SONG Zghrph - موقع زخرفة النصوص © 2023</p>
-            <p>أدخل أي نص لتحصل على زخارف متنوعة وجميلة</p>
-            <div class="footer-icons">
-                <i class="fab fa-instagram"></i>
-                <i class="fab fa-telegram"></i>
-                <i class="fab fa-twitter"></i>
-                <i class="fab fa-whatsapp"></i>
-            </div>
+            <p>© 2023 حاسبة الحروف ومغير الخطوط. جميع الحقوق محفوظة.</p>
         </footer>
     </div>
 
     <div class="notification" id="notification">تم النسخ إلى الحافظة!</div>
 
     <script>
-        // بيانات الزخارف لكل فئة
-        const fontsData = {
-            category1: [
-                { template: "𝗔𝗕𝗖𝗗𝗘𝗙𝗚𝗛𝗜𝗝𝗞𝗟𝗠𝗡𝗢𝗣𝗤𝗥𝗦𝗧𝗨𝗩𝗪𝗫𝗬𝗭", type: "bold-sans" },
-                { template: "𝘼𝘽𝘾𝘿𝙀𝙁𝙂𝙃𝙄𝙅𝙆𝙇𝙈𝙉𝙊𝙋𝙌𝙍𝙎𝙏𝙐𝙑𝙒𝙓𝙔𝙕", type: "bold-serif" },
-                { template: "𝓐𝓑𝓒𝓓𝓔𝓕𝓖𝓗𝓘𝓙𝓚𝓛𝓜𝓝𝓞𝓟𝓠𝓡𝓢𝓣𝓤𝓥𝓦𝓧𝓨𝓩", type: "script" },
-                { template: "𝒜𝐵𝒞𝒟𝐸𝐹𝒢𝐻𝐼𝒥𝒦𝐿𝑀𝒩𝒪𝒫𝒬𝑅𝒮𝒯𝒰𝒱𝒲𝒳𝒴𝒵", type: "script-alt" },
-                { template: "𝔄𝔅ℭ𝔇𝔈𝔉𝔊ℌℑ𝔍𝔎𝔏𝔐𝔑𝔒𝔓𝔔ℜ𝔖𝔗𝔘𝔙𝔚𝔛𝔜ℨ", type: "fraktur" }
-            ],
-            category2: [
-                { template: "𝐀𝐁𝐂𝐃𝐄𝐅𝐆𝐇𝐈𝐉𝐊𝐋𝐌𝐍𝐎𝐏𝐐𝐑𝐒𝐓𝐔𝐕𝐖𝐗𝐘𝐙", type: "bold" },
-                { template: "𝐴𝐵𝐶𝐷𝐸𝐹𝐺𝐻𝐼𝐽𝐾𝐿𝑀𝑁𝑂𝑃𝑄𝑅𝑆𝑇𝑈𝑉𝑊𝑋𝑌𝑍", type: "italic" },
-                { template: "𝑨𝑩𝑪𝑫𝑬𝑭𝑮𝑯𝑰𝑱𝑲𝑳𝑴𝑵𝑶𝑷𝑸𝑹𝑺𝑻𝑼𝑽𝑾𝑿𝒀𝒁", type: "bold-italic" },
-                { template: "𝖠𝖡𝖢𝖣𝖤𝖥𝖦𝖧𝖨𝖩𝖪𝖫𝖬𝖭𝖮𝖯𝖰𝖱𝖲𝖳𝖴𝖵𝖶𝖷𝖸𝖹", type: "sans" },
-                { template: "𝙰𝙱𝙲𝙳𝙴𝙵𝙶𝙷𝙸𝙹𝙺𝙻𝙼𝙽𝙾𝙿𝚀𝚁𝚂𝚃𝚄𝚅𝚆𝚇𝚈𝚉", type: "monospace" }
-            ],
-            category3: [
-                { template: "🅐 🅑 🅒 🅓 🅔 🅕 🅖 🅗 🅘 🅙 🅚 🅛 🅜 🅝 🅞 🅟 🅠 🅡 🅢 🅣 🅤 🅥 🅦 🅧 🅨 🅩", type: "circle" },
-                { template: "🄰 🄱 🄲 🄳 🄴 🄵 🄶 🄷 🄸 🄹 🄺 🄻 🄼 🄽 🄾 🄿 🅀 🅁 🅂 🅃 🅄 🅅 🅆 🅇 🅈 🅉", type: "square" },
-                { template: "A̶B̶C̶D̶E̶F̶G̶H̶I̶J̶K̶L̶M̶N̶O̶P̶Q̶R̶S̶T̶U̶V̶W̶X̶Y̶Z̶", type: "strikethrough" },
-                { template: "A͟B͟C͟D͟E͟F͟G͟H͟I͟J͟K͟L͟M͟N͟O͟P͟Q͟R͟S͟T͟U͟V͟W͟X͟Y͟Z͟", type: "underline" },
-                { template: "A⃠B⃠C⃠D⃠E⃠F⃠G⃠H⃠I⃠J⃠K⃠L⃠M⃠N⃠O⃠P⃠Q⃠R⃠S⃠T⃠U⃠V⃠W⃠X⃠Y⃠Z⃠", type: "negate" }
-            ],
-            category4: [
-                { template: "ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ", type: "fullwidth" },
-                { template: "ᴀʙᴄᴅᴇꜰɢʜɪᴊᴋʟᴍɴᴏᴘǫʀꜱᴛᴜᴠᴡxʏᴢ", type: "small-caps" },
-                { template: "ₐBCDₑFGₕᵢⱼₖₗₘₙₒPQᵣₛₜᵤᵥWₓYZ", type: "subscript" },
-                { template: "ᴬᴮᶜᴰᴱᶠᴳᴴᴵᴶᴷᴸᴹᴺᴼᴾᵟᴿˢᵀᵁⱽᵂˣʸᶻ", type: "superscript" },
-                { template: "αႦƈԃҽϝɠԋιʝƙʅɱɳσρϙɾʂƚυʋɯxყȥ", type: "cursive" }
-            ]
-        };
-
-        // بيانات الرموز
-        const symbolsData = [
-            "❖", "⎔", "⟐", "꒷", "◞", "◜", "◯", "⌲", "𝆺𝅥", "𝆹𝅥", "⁞", "➩", "┊", "★", "•", "↯",
-            "❀", "🐉", "⭑", "๋", "꒦", "︶", "⏝", "୨", "୧", "˖", "࣪", "⸼", "۫", "ָ", "ֶ", "ִ",
-            "ֺ", "𖥻", "۶", "⊹", "ৎ", "‿", "︵", "𝅭", "ꢾ", "𓍢", "ִ", "໋", "⎯", "ㅤ", "▭", "▬",
-            "࣪", "⫘", "〄", "╾", "────", "⚜︎", "🎃", "╼", "☆", "━━", "★", "┄", "📿", "⊰", "┇",
-            "❍", "━", "═", "✦", "⚔️", "⊱", "✾", "◜", "⤣", "❄", "⤤", "◞", "✥", "❊", "٠", "┈",
-            "─", "╼", "˼", "ナ", "ギ", "˹", "╾", "┈", "𝄗", "𝄘", "🐚", "˖", "˛", "﹝", "﹞", "🌸",
-            "💣", "‹", "›", "⋅", "┈", "🔆", "⌯", "━━", "─", "༺", "˹", "🕷", "˼", "༻", "◉", "♋︎",
-            "︱", "━", "╌", "♦️", "⌟", "⌞", "✩", "・", "✫", "﹝", "💮", "﹞", "━━", "─", "⋅", "*",
-            "🎸", "《", "》", "━", "═", "✥", "☕", "╯", "❖", "✤", "╬", "‧", "₊", "˚", "꒥", "꒷",
-            "︶", "꒷", "╯", "╭", "❄️", "⊰", "⊱", "┉", "┈", "╮", "❂", "╎", "الـفـرع", "|", "𝟏", "الأول"
+        // بيانات الخطوط
+        const fontsData = [
+            { name: "عادي", family: "Arial, sans-serif", className: "normal" },
+            { name: "عريض", family: "'Arial Black', sans-serif", className: "bold" },
+            { name: "مائل", family: "Arial, sans-serif", className: "italic", style: "italic" },
+            { name: "عريض مائل", family: "'Arial Black', sans-serif", className: "bold-italic", style: "italic" },
+            { name: "كتابة", family: "'Segoe Script', cursive", className: "script" },
+            { name: "يدوي", family: "'Comic Sans MS', cursive", className: "handwriting" },
+            { name: "زخرفي", family: "'Times New Roman', serif", className: "decorative" },
+            { name: "عرض كامل", family: "'Courier New', monospace", className: "monospace" }
         ];
 
-        // وظيفة لتحويل النص إلى زخرفة
+        // بيانات الزخارف
+        const decorationsData = [
+            { name: "منقط", template: "A̤B̤C̤D̤E̤F̤G̤H̤I̤J̤K̤L̤M̤N̤O̤P̤Q̤R̤S̤T̤ṲV̤W̤X̤Y̤Z̤" },
+            { name: "خط سفلي", template: "A̲B̲C̲D̲E̲F̲G̲H̲I̲J̲K̲L̲M̲N̲O̲P̲Q̲R̲S̲T̲U̲V̲W̲X̲Y̲Z̲" },
+            { name: "خط علوي", template: "A̅B̅C̅D̅E̅F̅G̅H̅I̅J̅K̅L̅M̅N̅O̅P̅Q̅R̅S̅T̅U̅V̅W̅X̅Y̅Z̅" },
+            { name: "متشطب", template: "A̶B̶C̶D̶E̶F̶G̶H̶I̶J̶K̶L̶M̶N̶O̶P̶Q̶R̶S̶T̶U̶V̶W̶X̶Y̶Z̶" },
+            { name: "مزدوج", template: "𝔸𝔹ℂ𝔻𝔼𝔽𝔾ℍ𝕀𝕁𝕂𝕃𝕄ℕ𝕆ℙℚℝ𝕊𝕋𝕌𝕍𝕎𝕏𝕐ℤ" },
+            { name: "زخرفي", template: "𝒜𝐵𝒞𝒟𝐸𝐹𝒢𝐻𝐼𝒥𝒦𝐿𝑀𝒩𝒪𝒫𝒬𝑅𝒮𝒯𝒰𝒱𝒲𝒳𝒴𝒵" },
+            { name: "يدوي", template: "𝓐𝓑𝓒𝓓𝓔𝓕𝓖𝓗𝓘𝓙𝓚𝓛𝓜𝓝𝓞𝓟𝓠𝓡𝓢𝓣𝓤𝓥𝓦𝓧𝓨𝓩" },
+            { name: "عريض", template: "𝗔𝗕𝗖𝗗𝗘𝗙𝗚𝗛𝗜𝗝𝗞𝗟𝗠𝗡𝗢𝗣𝗤𝗥𝗦𝗧𝗨𝗩𝗪𝗫𝗬𝗭" }
+        ];
+
+        // عناصر DOM
+        const textInput = document.getElementById('textInput');
+        const charCount = document.getElementById('charCount');
+        const wordCount = document.getElementById('wordCount');
+        const lineCount = document.getElementById('lineCount');
+        const clearBtn = document.getElementById('clearBtn');
+        const copyTextBtn = document.getElementById('copyTextBtn');
+        const fontPreview = document.getElementById('fontPreview');
+        const decorationPreview = document.getElementById('decorationPreview');
+        const fontsContainer = document.getElementById('fontsContainer');
+        const decorationsContainer = document.getElementById('decorationsContainer');
+        const copyFontBtn = document.getElementById('copyFontBtn');
+        const notification = document.getElementById('notification');
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        // تهيئة الخطوط والزخارف
+        function initializeFonts() {
+            fontsData.forEach(font => {
+                const fontItem = document.createElement('div');
+                fontItem.className = 'font-item';
+                fontItem.innerHTML = `
+                    <div class="font-preview" style="font-family: ${font.family}; font-style: ${font.style || 'normal'}">نص تجريبي</div>
+                    <div class="font-name">${font.name}</div>
+                `;
+                fontItem.addEventListener('click', () => {
+                    document.querySelectorAll('#fontsContainer .font-item').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    fontItem.classList.add('active');
+                    fontPreview.style.fontFamily = font.family;
+                    fontPreview.style.fontStyle = font.style || 'normal';
+                });
+                fontsContainer.appendChild(fontItem);
+            });
+
+            // تحديد أول خط بشكل افتراضي
+            fontsContainer.firstChild.classList.add('active');
+            fontPreview.style.fontFamily = fontsData[0].family;
+        }
+
+        function initializeDecorations() {
+            decorationsData.forEach(decoration => {
+                const decorationItem = document.createElement('div');
+                decorationItem.className = 'font-item';
+                decorationItem.innerHTML = `
+                    <div class="font-preview">${convertText('نص تجريبي', decoration.template)}</div>
+                    <div class="font-name">${decoration.name}</div>
+                `;
+                decorationItem.addEventListener('click', () => {
+                    document.querySelectorAll('#decorationsContainer .font-item').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    decorationItem.classList.add('active');
+                    decorationPreview.textContent = convertText('نص تجريبي', decoration.template);
+                });
+                decorationsContainer.appendChild(decorationItem);
+            });
+
+            // تحديد أول زخرفة بشكل افتراضي
+            decorationsContainer.firstChild.classList.add('active');
+            decorationPreview.textContent = convertText('نص تجريبي', decorationsData[0].template);
+        }
+
+        // تحويل النص إلى زخرفة
         function convertText(text, template) {
             const normalAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
             const templateAlphabet = template.replace(/ /g, '');
@@ -560,74 +472,32 @@
                 const char = text[i];
                 const index = normalAlphabet.indexOf(char);
                 
-                if (index !== -1) {
-                    // إذا كان الحرف موجودًا في الأبجدية العادية
-                    if (index < templateAlphabet.length) {
-                        result += templateAlphabet[index];
-                    } else {
-                        result += char;
-                    }
+                if (index !== -1 && index < templateAlphabet.length) {
+                    result += templateAlphabet[index];
                 } else {
-                    // إذا لم يكن حرفًا إنجليزيًا، أضفه كما هو
                     result += char;
                 }
             }
-            
             return result;
         }
 
-        // وظيفة لملء كل فئة بالزخارف
-        function populateFonts(userText = "Text") {
-            for (const categoryId in fontsData) {
-                const container = document.getElementById(categoryId);
-                container.innerHTML = ""; // مسح المحتوى القديم
-                
-                const fonts = fontsData[categoryId];
-                
-                fonts.forEach(font => {
-                    const fontItem = document.createElement('div');
-                    fontItem.className = 'font-item';
-                    
-                    const fontPreview = document.createElement('div');
-                    fontPreview.className = 'font-preview';
-                    const convertedText = convertText(userText.toUpperCase(), font.template);
-                    fontPreview.textContent = convertedText;
-                    
-                    const copyButton = document.createElement('button');
-                    copyButton.className = 'copy-btn';
-                    copyButton.innerHTML = '<i class="far fa-copy"></i> نسخ';
-                    copyButton.addEventListener('click', () => {
-                        copyToClipboard(convertedText);
-                        showNotification('تم النسخ إلى الحافظة');
-                    });
-                    
-                    fontItem.appendChild(fontPreview);
-                    fontItem.appendChild(copyButton);
-                    container.appendChild(fontItem);
-                });
-            }
-        }
-        
-        // وظيفة لملء قسم الرموز
-        function populateSymbols() {
-            const container = document.getElementById('symbols-container');
-            container.innerHTML = ""; // مسح المحتوى القديم
+        // عد الحروف والكلمات والسطور
+        function updateTextStats() {
+            const text = textInput.value;
             
-            symbolsData.forEach(symbol => {
-                const symbolItem = document.createElement('div');
-                symbolItem.className = 'symbol-item';
-                symbolItem.textContent = symbol;
-                
-                symbolItem.addEventListener('click', () => {
-                    copyToClipboard(symbol);
-                    showNotification('تم نسخ الرمز');
-                });
-                
-                container.appendChild(symbolItem);
-            });
+            // عد الحروف
+            charCount.textContent = text.length;
+            
+            // عد الكلمات
+            const words = text.trim().split(/\s+/).filter(word => word.length > 0);
+            wordCount.textContent = words.length;
+            
+            // عد السطور
+            const lines = text.split('\n').filter(line => line.trim().length > 0);
+            lineCount.textContent = lines.length;
         }
-        
-        // وظيفة نسخ النص إلى الحافظة
+
+        // نسخ النص إلى الحافظة
         function copyToClipboard(text) {
             const textarea = document.createElement('textarea');
             textarea.value = text;
@@ -635,24 +505,16 @@
             textarea.select();
             document.execCommand('copy');
             document.body.removeChild(textarea);
-        }
-        
-        // وظيفة عرض الإشعار
-        function showNotification(message) {
-            const notification = document.getElementById('notification');
-            notification.textContent = message;
-            notification.classList.add('show');
             
+            // عرض الإشعار
+            notification.classList.add('show');
             setTimeout(() => {
                 notification.classList.remove('show');
             }, 2000);
         }
-        
-        // وظيفة تبديل التبويبات
+
+        // إعداد التبويبات
         function setupTabs() {
-            const tabs = document.querySelectorAll('.tab');
-            const tabContents = document.querySelectorAll('.tab-content');
-            
             tabs.forEach(tab => {
                 tab.addEventListener('click', () => {
                     const tabId = tab.getAttribute('data-tab');
@@ -667,28 +529,43 @@
                 });
             });
         }
-        
-        // تشغيل الوظيفة عند تحميل الصفحة
+
+        // تهيئة الصفحة
         document.addEventListener('DOMContentLoaded', () => {
-            populateFonts();
-            populateSymbols();
+            initializeFonts();
+            initializeDecorations();
             setupTabs();
+            updateTextStats();
             
-            // إضافة حدث لزر التوليد
-            document.getElementById('generateBtn').addEventListener('click', () => {
-                const userText = document.getElementById('userText').value.trim();
-                if (userText) {
-                    populateFonts(userText);
-                    showNotification('تم توليد الزخارف');
-                } else {
-                    showNotification('يرجى إدخال نص أولاً');
-                }
+            // تحديث الإحصائيات عند الكتابة
+            textInput.addEventListener('input', updateTextStats);
+            
+            // مسح النص
+            clearBtn.addEventListener('click', () => {
+                textInput.value = '';
+                updateTextStats();
             });
             
-            // إضافة حدث عند الضغط على Enter في حقل الإدخال
-            document.getElementById('userText').addEventListener('keyup', (event) => {
-                if (event.key === 'Enter') {
-                    document.getElementById('generateBtn').click();
+            // نسخ النص الأصلي
+            copyTextBtn.addEventListener('click', () => {
+                copyToClipboard(textInput.value);
+            });
+            
+            // نسخ النص المزخرف
+            copyFontBtn.addEventListener('click', () => {
+                const activeTab = document.querySelector('.tab.active').getAttribute('data-tab');
+                if (activeTab === 'fonts') {
+                    const activeFont = document.querySelector('#fontsContainer .font-item.active');
+                    if (activeFont) {
+                        copyToClipboard(textInput.value);
+                    }
+                } else {
+                    const activeDecoration = document.querySelector('#decorationsContainer .font-item.active');
+                    if (activeDecoration) {
+                        const decorationIndex = Array.from(decorationsContainer.children).indexOf(activeDecoration);
+                        const decoratedText = convertText(textInput.value, decorationsData[decorationIndex].template);
+                        copyToClipboard(decoratedText);
+                    }
                 }
             });
         });
