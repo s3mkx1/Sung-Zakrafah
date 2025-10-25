@@ -14,7 +14,7 @@
         }
         
         body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
             color: #333;
             min-height: 100vh;
             padding: 20px;
@@ -25,22 +25,22 @@
         
         .container {
             width: 100%;
-            max-width: 500px;
+            max-width: 400px;
             background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             overflow: hidden;
         }
         
         .header {
-            background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
+            background: #8B4513;
             color: white;
-            padding: 25px;
+            padding: 20px;
             text-align: center;
         }
         
         .header h1 {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             margin-bottom: 5px;
             font-weight: 700;
         }
@@ -51,16 +51,16 @@
         }
         
         .content {
-            padding: 25px;
+            padding: 20px;
         }
         
         .input-section {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
         
         .input-label {
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             font-weight: 600;
             color: #555;
             font-size: 0.9rem;
@@ -68,9 +68,9 @@
         
         .text-input {
             width: 100%;
-            padding: 15px;
+            padding: 12px 15px;
             border: 2px solid #e0e0e0;
-            border-radius: 12px;
+            border-radius: 10px;
             font-size: 1rem;
             background: #f8f9fa;
             transition: all 0.3s;
@@ -80,16 +80,15 @@
             outline: none;
             border-color: #D2691E;
             background: white;
-            box-shadow: 0 0 0 3px rgba(210, 105, 30, 0.1);
         }
         
         .fonts-section {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
         
         .section-title {
-            font-size: 1rem;
-            margin-bottom: 15px;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
             color: #555;
             font-weight: 600;
         }
@@ -97,16 +96,16 @@
         .fonts-grid {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
         }
         
         .font-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px;
+            padding: 12px 15px;
             background: #f8f9fa;
-            border-radius: 12px;
+            border-radius: 10px;
             border: 2px solid #e0e0e0;
             cursor: pointer;
             transition: all 0.3s;
@@ -114,8 +113,6 @@
         
         .font-item:hover {
             border-color: #D2691E;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
         
         .font-item.active {
@@ -124,46 +121,45 @@
         }
         
         .font-name {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #555;
             font-weight: 500;
         }
         
         .font-preview {
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 600;
             color: #8B4513;
         }
         
         .action-buttons {
             display: flex;
-            gap: 12px;
-            margin-top: 20px;
+            gap: 10px;
+            margin-top: 15px;
         }
         
         .btn {
             flex: 1;
-            padding: 15px;
+            padding: 12px;
             border: none;
-            border-radius: 12px;
-            font-size: 1rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 6px;
         }
         
         .btn-primary {
-            background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
+            background: #8B4513;
             color: white;
         }
         
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.3);
+            background: #D2691E;
         }
         
         .btn-secondary {
@@ -174,7 +170,6 @@
         
         .btn-secondary:hover {
             background: #e9ecef;
-            transform: translateY(-2px);
         }
         
         .notification {
@@ -183,12 +178,13 @@
             right: 20px;
             background: #28a745;
             color: white;
-            padding: 15px 25px;
-            border-radius: 10px;
+            padding: 12px 20px;
+            border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             transform: translateX(150%);
             transition: transform 0.5s ease;
             z-index: 1000;
+            font-size: 0.9rem;
         }
         
         .notification.show {
@@ -196,42 +192,28 @@
         }
         
         .result-section {
-            margin-top: 20px;
-            padding: 20px;
+            margin-top: 15px;
+            padding: 15px;
             background: #f8f9fa;
-            border-radius: 12px;
+            border-radius: 10px;
             border: 2px dashed #e0e0e0;
         }
         
         .result-title {
-            font-size: 0.9rem;
-            margin-bottom: 10px;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
             color: #555;
             font-weight: 600;
         }
         
         .result-text {
-            font-size: 1.2rem;
-            min-height: 60px;
-            padding: 15px;
+            font-size: 1.1rem;
+            min-height: 50px;
+            padding: 12px;
             background: white;
             border-radius: 8px;
             border: 1px solid #e0e0e0;
             word-break: break-word;
-        }
-        
-        @media (max-width: 480px) {
-            .container {
-                margin: 10px;
-            }
-            
-            .content {
-                padding: 20px;
-            }
-            
-            .action-buttons {
-                flex-direction: column;
-            }
         }
     </style>
 </head>
@@ -295,36 +277,6 @@
                 name: "نص فقاعي",
                 preview: "B U B B L E",
                 template: "🄰 🄱 🄲 🄳 🄴 🄵 🄶 🄷 🄸 🄹 🄺 🄻 🄼 🄽 🄾 🄿 🅀 🅁 🅂 🅃 🅄 🅅 🅆 🅇 🅈 🅉"
-            },
-            {
-                name: "نص مائل",
-                preview: "Italic",
-                template: "𝘈𝘉𝘊𝘋𝘌𝘍𝘎𝘏𝘐𝘑𝘒𝘓𝘔𝘕𝘖𝘗𝘘𝘙𝘚𝘛𝘜𝘝𝘞𝘟𝘠𝘡"
-            },
-            {
-                name: "نص مائل عريض",
-                preview: "Bold Italic",
-                template: "𝘼𝘽𝘾𝘿𝙀𝙁𝙂𝙃𝙄𝙅𝙆𝙇𝙈𝙉𝙊𝙋𝙌𝙍𝙎𝙏𝙐𝙑𝙒𝙓𝙔𝙕"
-            },
-            {
-                name: "نص يدوي",
-                preview: "Script",
-                template: "𝒜𝐵𝒞𝒟𝐸𝐹𝒢𝐻𝐼𝒥𝒦𝐿𝑀𝒩𝒪𝒫𝒬𝑅𝒮𝒯𝒰𝒱𝒲𝒳𝒴𝒵"
-            },
-            {
-                name: "نص زخرفي",
-                preview: "Fancy",
-                template: "𝔄𝔅ℭ𝔇𝔈𝔉𝔊ℌℑ𝔍𝔎𝔏𝔐𝔑𝔒𝔓𝔔ℜ𝔖𝔗𝔘𝔙𝔚𝔛𝔜ℨ"
-            },
-            {
-                name: "نص مزدوج",
-                preview: "Double",
-                template: "𝔸𝔹ℂ𝔻𝔼𝔽𝔾ℍ𝕀𝕁𝕂𝕃𝕄ℕ𝕆ℙℚℝ𝕊𝕋𝕌𝕍𝕎𝕏𝕐ℤ"
-            },
-            {
-                name: "نص منقط",
-                preview: "Dotted",
-                template: "A̤B̤C̤D̤E̤F̤G̤H̤I̤J̤K̤L̤M̤N̤O̤P̤Q̤R̤S̤T̤ṲV̤W̤X̤Y̤Z̤"
             }
         ];
 
