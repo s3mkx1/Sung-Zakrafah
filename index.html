@@ -3,162 +3,168 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>زخرفة الأسماء | SUNG</title>
+<title>Sung - زخرفة الأسماء والرموز</title>
 <style>
-  body {
-    font-family: 'Cairo', sans-serif;
-    background: #f8f9fb;
-    color: #222;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-  }
-  header {
-    background: #fff;
-    padding: 15px;
-    font-size: 22px;
-    font-weight: bold;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-  }
-  .tabs {
-    display: flex;
-    justify-content: center;
-    margin-top: 15px;
-    gap: 10px;
-  }
-  button.tab {
-    border: none;
-    background: #e5e7eb;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 12px;
-    transition: 0.3s;
-  }
-  button.tab.active {
-    background: #2563eb;
-    color: #fff;
-  }
-  .container {
-    margin-top: 20px;
-    max-width: 600px;
-    margin-inline: auto;
-    background: #fff;
-    padding: 25px;
-    border-radius: 16px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  }
-  input {
-    width: 90%;
-    padding: 10px;
-    font-size: 17px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    outline: none;
-    text-align: center;
-  }
-  .results {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  .result {
-    background: #f4f6f8;
-    border-radius: 10px;
-    padding: 10px;
-    font-size: 18px;
-    position: relative;
-  }
-  .copy {
-    position: absolute;
-    right: 12px;
-    top: 10px;
-    background: #2563eb;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    padding: 5px 8px;
-    cursor: pointer;
-    font-size: 13px;
-  }
-  footer {
-    margin-top: 30px;
-    padding: 20px;
-    font-size: 14px;
-    color: #888;
-  }
+body {
+  font-family: 'Cairo', sans-serif;
+  background: #ffffff;
+  color: #111;
+  text-align: center;
+  padding: 20px;
+  user-select: none;
+}
+.container {
+  max-width: 700px;
+  margin: auto;
+}
+h1 {
+  font-size: 2em;
+  color: #222;
+  margin-bottom: 10px;
+}
+textarea {
+  width: 100%;
+  height: 60px;
+  font-size: 1.1em;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  outline: none;
+  transition: .3s;
+}
+textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px #007bff;
+}
+.btn {
+  margin-top: 10px;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 10px;
+  background: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: .3s;
+}
+.btn:hover {
+  background: #0056b3;
+}
+.results {
+  margin-top: 20px;
+  text-align: left;
+  direction: ltr;
+}
+.result {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  position: relative;
+}
+.copy {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.symbols {
+  margin-top: 30px;
+  text-align: center;
+}
+.symbols button {
+  margin: 5px;
+  padding: 5px 8px;
+  background: #eee;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.symbols button:hover {
+  background: #ddd;
+}
+footer {
+  margin-top: 40px;
+  color: #666;
+  font-size: .9em;
+}
 </style>
 </head>
-<body>
-  <header>🎨 زخرفة الأسماء | SUNG</header>
-
-  <div class="tabs">
-    <button class="tab active" id="arabicTab">زخرفة عربية</button>
-    <button class="tab" id="englishTab">زخرفة إنجليزية</button>
-  </div>
-
+<body oncontextmenu="return false;" onselectstart="return false;">
   <div class="container">
-    <input type="text" id="inputText" placeholder="اكتب الاسم هنا...">
+    <h1>🌟 Sung - زخرفة الأسماء والرموز</h1>
+    <textarea id="input" placeholder="اكتب اسمك هنا..."></textarea>
+    <button class="btn" onclick="zakhrafa()">زخرف</button>
     <div class="results" id="results"></div>
-  </div>
 
-  <footer>Made by <b>SUNG</b></footer>
+    <h2>✨ الرموز والأشرطة ✨</h2>
+    <div class="symbols" id="symbols"></div>
+
+    <footer>© 2025 Sung | جميع الحقوق محفوظة 🚀</footer>
+  </div>
 
 <script>
-const arabicFonts = [
-  "Cairo", "Amiri", "Tajawal", "Changa", "El Messiri",
-  "Scheherazade New", "Reem Kufi", "Noto Naskh Arabic"
+// 🧠 أنماط الزخرفة (20 نوع)
+const styles = [
+  {name: "𝗠𝗜𝗥𝗢", map: ["𝗔","𝗕","𝗖","𝗗","𝗘","𝗙","𝗚","𝗛","𝗜","𝗝","𝗞","𝗟","𝗠","𝗡","𝗢","𝗣","𝗤","𝗥","𝗦","𝗧","𝗨","𝗩","𝗪","𝗫","𝗬","𝗭"]},
+  {name: "𝐖𝐞𝐥𝐜𝐨𝐦𝐞", map: ["𝐀","𝐁","𝐂","𝐃","𝐄","𝐅","𝐆","𝐇","𝐈","𝐉","𝐊","𝐋","𝐌","𝐍","𝐎","𝐏","𝐐","𝐑","𝐒","𝐓","𝐔","𝐕","𝐖","𝐗","𝐘","𝐙"]},
+  {name: "𝐌𝐀𝐃𝐀𝐑𝐀", map: ["𝐀","𝐁","𝐂","𝐃","𝐄","𝐅","𝐆","𝐇","𝐈","𝐉","𝐊","𝐋","𝐌","𝐍","𝐎","𝐏","𝐐","𝐑","𝐒","𝐓","𝐔","𝐕","𝐖","𝐗","𝐘","𝐙"]},
+  {name: "𝙼𝙰𝙸", map: ["𝙰","𝙱","𝙲","𝙳","𝙴","𝙵","𝙶","𝙷","𝙸","𝙹","𝙺","𝙻","𝙼","𝙽","𝙾","𝙿","𝚀","𝚁","𝚂","𝚃","𝚄","𝚅","𝚆","𝚇","𝚈","𝚉"]},
+  {name: "𝑆𝐻𝛩𝐷𝛩𝑊", map: ["𝑨","𝑩","𝑪","𝑫","𝑬","𝑭","𝑮","𝑯","𝑰","𝑱","𝑲","𝑳","𝑴","𝑵","𝑶","𝑷","𝑸","𝑹","𝑺","𝑻","𝑼","𝑽","𝑾","𝑿","𝒀","𝒁"]},
+  {name: "𝐒𝐏𝐄𝐄𝐃", map: ["𝗔","𝗕","𝗖","𝗗","𝗘","𝗙","𝗚","𝗛","𝗜","𝗝","𝗞","𝗟","𝗠","𝗡","𝗢","𝗣","𝗤","𝗥","𝗦","𝗧","𝗨","𝗩","𝗪","𝗫","𝗬","𝗭"]},
+  {name: "𝑻𝖊𝘴𝐬𝗂𝒂", map: ["𝑨","𝑩","𝑪","𝑫","𝑬","𝑭","𝑮","𝑯","𝑰","𝑱","𝑲","𝑳","𝑴","𝑵","𝑶","𝑷","𝑸","𝑹","𝑺","𝑻","𝑼","𝑽","𝑾","𝑿","𝒀","𝒁"]},
+  {name: "𝑇ℎ𝑒 𝑙𝑖𝑛𝑘", map: ["𝑨","𝑩","𝑪","𝑫","𝑬","𝑭","𝑮","𝑯","𝑰","𝑱","𝑲","𝑳","𝑴","𝑵","𝑶","𝑷","𝑸","𝑹","𝑺","𝑻","𝑼","𝑽","𝑾","𝑿","𝒀","𝒁"]},
+  {name: "🅰️ نمط 9", map: ["🅰️","🅱️","🌜","🌛","🎗","🎏","🌀","♓","🎐","🎷","🎋","👢","〽️","🎵","🅾️","🅿️","🍳","🌱","💲","🌴","⛎","✅","🔱","❎","🍸","💤"]},
+  {name: "🅰️ نمط 10", map: ["Ⓐ","Ⓑ","Ⓒ","Ⓓ","Ⓔ","Ⓕ","Ⓖ","Ⓗ","Ⓘ","Ⓙ","Ⓚ","Ⓛ","Ⓜ","Ⓝ","Ⓞ","Ⓟ","Ⓠ","Ⓡ","Ⓢ","Ⓣ","Ⓤ","Ⓥ","Ⓦ","Ⓧ","Ⓨ","Ⓩ"]},
+  {name: "𝓐𝓻𝓽", map: ["𝓐","𝓑","𝓒","𝓓","𝓔","𝓕","𝓖","𝓗","𝓘","𝓙","𝓚","𝓛","𝓜","𝓝","𝓞","𝓟","𝓠","𝓡","𝓢","𝓣","𝓤","𝓥","𝓦","𝓧","𝓨","𝓩"]},
+  {name: "𝔉𝔯𝔞𝔫𝔨", map: ["𝔄","𝔅","ℭ","𝔇","𝔈","𝔉","𝔊","ℌ","ℑ","𝔍","𝔎","𝔏","𝔐","𝔑","𝔒","𝔓","𝔔","ℜ","𝔖","𝔗","𝔘","𝔙","𝔚","𝔛","𝔜","ℨ"]},
+  {name: "ʜᴇᴀᴠʏ", map: ["🅐","🅑","🅒","🅓","🅔","🅕","🅖","🅗","🅘","🅙","🅚","🅛","🅜","🅝","🅞","🅟","🅠","🅡","🅢","🅣","🅤","🅥","🅦","🅧","🅨","🅩"]},
+  {name: "ɪᴛᴀʟɪᴄ", map: ["ᴀ","ʙ","ᴄ","ᴅ","ᴇ","ғ","ɢ","ʜ","ɪ","ᴊ","ᴋ","ʟ","ᴍ","ɴ","ᴏ","ᴘ","ǫ","ʀ","s","ᴛ","ᴜ","ᴠ","ᴡ","x","ʏ","ᴢ"]},
+  {name: "ᴄʜɪᴄ", map: ["Ａ","Ｂ","Ｃ","Ｄ","Ｅ","Ｆ","Ｇ","Ｈ","Ｉ","Ｊ","Ｋ","Ｌ","Ｍ","Ｎ","Ｏ","Ｐ","Ｑ","Ｒ","Ｓ","Ｔ","Ｕ","Ｖ","Ｗ","Ｘ","Ｙ","Ｚ"]},
+  {name: "꧁꧂", map: ["꧁A꧂","꧁B꧂","꧁C꧂","꧁D꧂","꧁E꧂","꧁F꧂","꧁G꧂","꧁H꧂","꧁I꧂","꧁J꧂","꧁K꧂","꧁L꧂","꧁M꧂","꧁N꧂","꧁O꧂","꧁P꧂","꧁Q꧂","꧁R꧂","꧁S꧂","꧁T꧂","꧁U꧂","꧁V꧂","꧁W꧂","꧁X꧂","꧁Y꧂","꧁Z꧂"]},
+  {name: "彡✨", map: ["彡A彡","彡B彡","彡C彡","彡D彡","彡E彡","彡F彡","彡G彡","彡H彡","彡I彡","彡J彡","彡K彡","彡L彡","彡M彡","彡N彡","彡O彡","彡P彡","彡Q彡","彡R彡","彡S彡","彡T彡","彡U彡","彡V彡","彡W彡","彡X彡","彡Y彡","彡Z彡"]},
+  {name: "⧼⧽", map: ["⧼A⧽","⧼B⧽","⧼C⧽","⧼D⧽","⧼E⧽","⧼F⧽","⧼G⧽","⧼H⧽","⧼I⧽","⧼J⧽","⧼K⧽","⧼L⧽","⧼M⧽","⧼N⧽","⧼O⧽","⧼P⧽","⧼Q⧽","⧼R⧽","⧼S⧽","⧼T⧽","⧼U⧽","⧼V⧽","⧼W⧽","⧼X⧽","⧼Y⧽","⧼Z⧽"]},
+  {name: "★彡", map: ["★A彡","★B彡","★C彡","★D彡","★E彡","★F彡","★G彡","★H彡","★I彡","★J彡","★K彡","★L彡","★M彡","★N彡","★O彡","★P彡","★Q彡","★R彡","★S彡","★T彡","★U彡","★V彡","★W彡","★X彡","★Y彡","★Z彡"]}
 ];
-const englishFonts = [
-  "Poppins", "Roboto", "Playfair Display", "Lobster",
-  "Merriweather", "Raleway", "Montserrat", "Pacifico"
-];
 
-let activeLang = 'arabic';
-const input = document.getElementById("inputText");
-const results = document.getElementById("results");
+// الرموز والأشرطة
+const symbolList = ["★彡","꧁꧂","✿","❖","❀","♛","♜","♚","♕","⚜️","🌸","💎","💫","✨","🌙","☪️","⚡","🔥","🌟","🦋","🌹","🖤","🤍","💥","🩵"];
 
-document.getElementById("arabicTab").addEventListener("click", () => {
-  setActive('arabic');
-});
-document.getElementById("englishTab").addEventListener("click", () => {
-  setActive('english');
-});
-
-function setActive(lang) {
-  activeLang = lang;
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  document.getElementById(lang + 'Tab').classList.add('active');
-  generate();
-}
-
-input.addEventListener("input", generate);
-
-function generate() {
-  const text = input.value.trim();
-  results.innerHTML = "";
-  if (!text) return;
-
-  const list = activeLang === 'arabic' ? arabicFonts : englishFonts;
-
-  list.forEach(f => {
-    const div = document.createElement("div");
-    div.className = "result";
-    div.style.fontFamily = f;
-    div.innerHTML = `<span>${text}</span><button class="copy" onclick="copyText('${text}')">نسخ</button>`;
-    results.appendChild(div);
+function zakhrafa(){
+  const input = document.getElementById('input').value.toUpperCase();
+  const resultBox = document.getElementById('results');
+  resultBox.innerHTML = '';
+  styles.forEach(style=>{
+    let text = '';
+    for(let ch of input){
+      let idx = ch.charCodeAt(0)-65;
+      if(idx>=0 && idx<26) text += style.map[idx];
+      else text += ch;
+    }
+    const div = document.createElement('div');
+    div.className='result';
+    div.innerHTML = `<b>${style.name}</b>: ${text} <button class="copy" onclick="copyText('${text}')">📋</button>`;
+    resultBox.appendChild(div);
   });
 }
 
-function copyText(text) {
-  navigator.clipboard.writeText(text);
-  alert("تم نسخ الزخرفة!");
+function copyText(t){
+  navigator.clipboard.writeText(t);
+  alert('✅ تم النسخ!');
 }
+
+const symbolsDiv=document.getElementById('symbols');
+symbolList.forEach(s=>{
+  const b=document.createElement('button');
+  b.textContent=s;
+  b.onclick=()=>copyText(s);
+  symbolsDiv.appendChild(b);
+});
 </script>
-
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Amiri&family=Cairo:wght@400;700&family=Changa&family=El+Messiri&family=Montserrat:wght@500&family=Merriweather&family=Noto+Naskh+Arabic&family=Pacifico&family=Playfair+Display&family=Poppins&family=Raleway&family=Reem+Kufi&family=Roboto&family=Scheherazade+New&display=swap" rel="stylesheet">
-
 </body>
 </html>
