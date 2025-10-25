@@ -1,176 +1,353 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sung - زخرفة الأسماء والرموز</title>
-<style>
-body {
-  margin: 0;
-  font-family: 'Cairo', sans-serif;
-  background: #fff9f0;
-  color: #222;
-  overflow-x: hidden;
-  user-select: none;
-}
-header {
-  text-align: center;
-  padding: 25px 0;
-  background: linear-gradient(90deg, #fff, #fbe5b3, #fff);
-  font-size: 28px;
-  font-weight: bold;
-  color: #b59433;
-  box-shadow: 0 0 15px rgba(181, 148, 51, 0.3);
-}
-.tabs {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-.tab {
-  background: #fff;
-  border: 2px solid #d4af37;
-  padding: 10px 25px;
-  cursor: pointer;
-  margin: 0 5px;
-  border-radius: 12px;
-  font-weight: bold;
-  color: #b59433;
-  transition: all 0.3s ease;
-}
-.tab.active, .tab:hover {
-  background: #b59433;
-  color: #fff;
-}
-.container {
-  text-align: center;
-  padding: 30px;
-}
-input {
-  width: 90%;
-  max-width: 400px;
-  padding: 10px;
-  border: 2px solid #d4af37;
-  border-radius: 12px;
-  font-size: 18px;
-  outline: none;
-}
-.result {
-  margin-top: 20px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 15px;
-  justify-items: center;
-}
-.box {
-  background: rgba(255,255,255,0.8);
-  border: 2px solid #d4af37;
-  padding: 12px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(181,148,51,0.3);
-  transition: 0.3s;
-  cursor: pointer;
-}
-.box:hover {
-  background: #fff3cf;
-  transform: scale(1.03);
-}
-.copy {
-  background: #b59433;
-  color: #fff;
-  padding: 5px 10px;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  margin-top: 5px;
-}
-.hidden { display: none; }
-
-/* حماية من النسخ */
-body * {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سونغ - موقع الزغرفة</title>
+    <style>
+        /* أنماط CSS الأساسية */
+        :root {
+            --primary-color: #6a0dad;
+            --secondary-color: #ff69b4;
+            --dark-color: #1a1a2e;
+            --light-color: #f8f9fa;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .decorative-border {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+        }
+        
+        .category {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .category-title {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+            text-align: center;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .fonts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+        }
+        
+        .font-item {
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .font-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .font-preview {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .copy-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .copy-btn:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* أنماط متجاوبة */
+        @media (max-width: 768px) {
+            .fonts-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
-<body oncontextmenu="return false" onkeydown="if(event.keyCode==123){return false;}">
+<body>
+    <div class="container">
+        <header>
+            <h1>سونغ</h1>
+            <p class="subtitle">موقع زخرفة الأسماء والرموز</p>
+        </header>
+        
+        <div class="decorative-border">
+            ╮⟐┈┈┈┉⊱•┇❄️┇•⊰┉┈┈┈⟐╭
+        </div>
+        
+        <section class="category">
+            <h2 class="category-title">𝗠꯭ٌَُٰٰ𝗜ּ𝗥̸̷̶𝗢̸̷̶ 𝗟̸̷̶𝗜ּ͟𝗡̷̸̈𝗞</h2>
+            <div class="fonts-grid" id="category1">
+                <!-- سيتم ملء هذا القسم بالجافاسكريبت -->
+            </div>
+        </section>
+        
+        <div class="decorative-border">
+            ⋅⋅• ❅ ━─ ━ ╃╷🎐╵╄ ─━ ━ ❅ •⋅⋅
+        </div>
+        
+        <section class="category">
+            <h2 class="category-title">𝐖𝖾𝗅𝖼᧑ꭑ𝖾 𝗍᧑ 𝐎𝗎𝗋 𝐏𝗅⍺𝖼𝖾</h2>
+            <div class="fonts-grid" id="category2">
+                <!-- سيتم ملء هذا القسم بالجافاسكريبت -->
+            </div>
+        </section>
+        
+        <div class="decorative-border">
+            ✥━═━═• 《•🎸•》•═━═━✥
+        </div>
+        
+        <section class="category">
+            <h2 class="category-title">𝐌 𝐀 𝐃 𝐀 𝐑 𝐀 - 𝐁 𝐎 𝐓</h2>
+            <div class="fonts-grid" id="category3">
+                <!-- سيتم ملء هذا القسم بالجافاسكريبت -->
+            </div>
+        </section>
+        
+        <div class="decorative-border">
+            ⎔ ⋅ ───━ •﹝💮﹞• ━─── ⋅ *
+        </div>
+        
+        <section class="category">
+            <h2 class="category-title">𝙼𝙰𝙸 𝙰𝙸</h2>
+            <div class="fonts-grid" id="category4">
+                <!-- سيتم ملء هذا القسم بالجافاسكريبت -->
+            </div>
+        </section>
+        
+        <div class="decorative-border">
+            ✫・✦━━✩ ⌟♦️⌞ ✩━━✦・✫
+        </div>
+        
+        <section class="category">
+            <h2 class="category-title">𝑆𝐻𝛩𝐷𝛩𝑊 𝐵𝛩𝑇</h2>
+            <div class="fonts-grid" id="category5">
+                <!-- سيتم ملء هذا القسم بالجافاسكريبت -->
+            </div>
+        </section>
+        
+        <div class="decorative-border">
+            ◯┉╌⎔ ╌━︱♋︎︱ ━╌ ⎔╌┉◯
+        </div>
+        
+        <section class="category">
+            <h2 class="category-title">𝐒𝐏𝐄𝐄𝐃 𝐇𝐎𝐒𝐓</h2>
+            <div class="fonts-grid" id="category6">
+                <!-- سيتم ملء هذا القسم بالجافاسكريبت -->
+            </div>
+        </section>
+        
+        <div class="decorative-border">
+            *◉━━─ • ༺ ˹🕷˼ ༻ • ─━━◉*
+        </div>
+        
+        <section class="category">
+            <h2 class="category-title">𝑻𝖊𝘴𝐬𝗂𝒂  𝑺𝒕𝗶𝗰𝗸𝗲𝗿</h2>
+            <div class="fonts-grid" id="category7">
+                <!-- سيتم ملء هذا القسم بالجافاسكريبت -->
+            </div>
+        </section>
+        
+        <div class="decorative-border">
+            ⎔───━ ━ • ⊰ 📓 ⊱ • ━ ━───⎔
+        </div>
+        
+        <section class="category">
+            <h2 class="category-title">𝑇ℎ𝑒 𝑙𝑖𝑛𝑘</h2>
+            <div class="fonts-grid" id="category8">
+                <!-- سيتم ملء هذا القسم بالجافاسكريبت -->
+            </div>
+        </section>
+        
+        <div class="decorative-border">
+            •❅──────✧❅🧬❅✧──────❅•
+        </div>
+        
+        <footer>
+            <p>سونغ - موقع زخرفة الأسماء © 2023</p>
+            <p>جميع الحقوق محفوظة</p>
+        </footer>
+    </div>
 
-<header>✨ Sung - زخرفة الأسماء والرموز ✨</header>
-
-<div class="tabs">
-  <div class="tab active" onclick="showTab('decor')">الزخرفة</div>
-  <div class="tab" onclick="showTab('symbols')">الرموز</div>
-</div>
-
-<div id="decor" class="container">
-  <input id="textInput" type="text" placeholder="اكتب اسمك هنا..." oninput="generate()">
-  <div class="result" id="result"></div>
-</div>
-
-<div id="symbols" class="container hidden">
-  <div class="result">
-    <div class="box">╮⟐┈┈┈┉⊱•┇❄️┇•⊰┉┈┈┈⟐╭</div>
-    <div class="box">✥━═━═• 《•🎸•》•═━═━✥</div>
-    <div class="box">❍━═━═✦•⊰⚔️⊱•✦═━═━❍</div>
-    <div class="box">𖦹 ┈ ┈ ┈ 𖦹</div>
-    <div class="box">╼────╾⚜︎🎃⚜︎╼────╾〄</div>
-    <div class="box">✫・✦━━✩ ⌟♦️⌞ ✩━━✦・✫</div>
-    <div class="box">⋅⋅• ❅ ━─ ╃╷🎐╵╄ ─━ ❅ •⋅⋅</div>
-    <div class="box">⎔ ⋅ ───━ •﹝💮﹞• ━─── ⋅ *</div>
-  </div>
-</div>
-
-<script>
-const fonts = [
-  text => `𝗠꯭ٌَُٰٰ${text.toUpperCase()}̸̷̶`,
-  text => `𝐖${text}𝐄𝐋𝐂𝐎𝐌𝐄`,
-  text => `𝐌 𝐀 𝐃 𝐀 𝐑 𝐀 - 𝐁 𝐎 𝐓`,
-  text => `𝙼𝙰𝙸 𝙰𝙸`,
-  text => `𝑆𝐻𝛩𝐷𝛩𝑊 𝐵𝛩𝑇`,
-  text => `𝐒𝐏𝐄𝐄𝐃 𝐇𝐎𝐒𝐓`,
-  text => `𝑻𝖊𝘴𝐬𝗂𝒂 𝑺𝒕𝗶𝗰𝗸𝗲𝗋`,
-  text => `𝑇ℎ𝑒 𝑙𝑖𝑛𝑘`,
-  text => `★彡(${text})彡★`,
-  text => `꧁༒☬${text}☬༒꧂`,
-  text => `♡${text}♡`,
-  text => `• ${text} •`,
-  text => `『${text}』`,
-  text => `❖ ${text} ❖`,
-  text => `𓆩${text}𓆪`,
-  text => `ꜱᴜɴɢ | ${text}`,
-  text => `★·.·´¯${text}¯·.·★`,
-  text => `×º°”˜${text}˜”°º×`,
-  text => `✧${text}✧`,
-  text => `⟆${text}⟅`
-];
-
-function generate() {
-  const input = document.getElementById('textInput').value.trim();
-  const result = document.getElementById('result');
-  result.innerHTML = '';
-  if (!input) return;
-  fonts.forEach(fn => {
-    const box = document.createElement('div');
-    box.className = 'box';
-    box.innerHTML = fn(input) + `<br><button class="copy" onclick="copyText('${fn(input)}')">نسخ</button>`;
-    result.appendChild(box);
-  });
-}
-
-function copyText(text) {
-  navigator.clipboard.writeText(text);
-  alert('تم النسخ بنجاح ✅');
-}
-
-function showTab(tab) {
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.container').forEach(c => c.classList.add('hidden'));
-  document.querySelector(`#${tab}`).classList.remove('hidden');
-  event.target.classList.add('active');
-}
-</script>
+    <script>
+        // بيانات الزخارف لكل فئة
+        const fontsData = {
+            category1: [
+                "𝗦𝗢𝗡𝗚",
+                "𝗦𝗢𝗡𝗚",
+                "𝗦𝗢𝗡𝗚",
+                "𝗦𝗢𝗡𝗚",
+                "𝗦𝗢𝗡𝗚"
+            ],
+            category2: [
+                "𝐒𝐎𝐍𝐆",
+                "𝐒𝐎𝐍𝐆",
+                "𝐒𝐎𝐍𝐆",
+                "𝐒𝐎𝐍𝐆",
+                "𝐒𝐎𝐍𝐆"
+            ],
+            category3: [
+                "𝐒 𝐎 𝐍 𝐆",
+                "𝐒 𝐎 𝐍 𝐆",
+                "𝐒 𝐎 𝐍 𝐆",
+                "𝐒 𝐎 𝐍 𝐆",
+                "𝐒 𝐎 𝐍 𝐆"
+            ],
+            category4: [
+                "𝚂𝙾𝙽𝙶",
+                "𝚂𝙾𝙽𝙶",
+                "𝚂𝙾𝙽𝙶",
+                "𝚂𝙾𝙽𝙶",
+                "𝚂𝙾𝙽𝙶"
+            ],
+            category5: [
+                "𝑆𝑂𝑁𝐺",
+                "𝑆𝑂𝑁𝐺",
+                "𝑆𝑂𝑁𝐺",
+                "𝑆𝑂𝑁𝐺",
+                "𝑆𝑂𝑁𝐺"
+            ],
+            category6: [
+                "𝐒𝐏𝐄𝐄𝐃 𝐇𝐎𝐒𝐓",
+                "𝐒𝐏𝐄𝐄𝐃 𝐇𝐎𝐒𝐓",
+                "𝐒𝐏𝐄𝐄𝐃 𝐇𝐎𝐒𝐓",
+                "𝐒𝐏𝐄𝐄𝐃 𝐇𝐎𝐒𝐓",
+                "𝐒𝐏𝐄𝐄𝐃 𝐇𝐎𝐒𝐓"
+            ],
+            category7: [
+                "𝒮𝒪𝒩𝒢",
+                "𝒮𝒪𝒩𝒢",
+                "𝒮𝒪𝒩𝒢",
+                "𝒮𝒪𝒩𝒢",
+                "𝒮𝒪𝒩𝒢"
+            ],
+            category8: [
+                "𝒯𝒽𝑒 𝐿𝒾𝓃𝓀",
+                "𝒯𝒽𝑒 𝐿𝒾𝓃𝓀",
+                "𝒯𝒽𝑒 𝐿𝒾𝓃𝓀",
+                "𝒯𝒽𝑒 𝐿𝒾𝓃𝓀",
+                "𝒯𝒽𝑒 𝐿𝒾𝓃𝓀"
+            ]
+        };
+        
+        // وظيفة لملء كل فئة بالزخارف
+        function populateFonts() {
+            for (const categoryId in fontsData) {
+                const container = document.getElementById(categoryId);
+                const fonts = fontsData[categoryId];
+                
+                fonts.forEach(font => {
+                    const fontItem = document.createElement('div');
+                    fontItem.className = 'font-item';
+                    
+                    const fontPreview = document.createElement('div');
+                    fontPreview.className = 'font-preview';
+                    fontPreview.textContent = font;
+                    
+                    const copyButton = document.createElement('button');
+                    copyButton.className = 'copy-btn';
+                    copyButton.textContent = 'نسخ';
+                    copyButton.addEventListener('click', () => {
+                        copyToClipboard(font);
+                        alert('تم نسخ النص: ' + font);
+                    });
+                    
+                    fontItem.appendChild(fontPreview);
+                    fontItem.appendChild(copyButton);
+                    container.appendChild(fontItem);
+                });
+            }
+        }
+        
+        // وظيفة نسخ النص إلى الحافظة
+        function copyToClipboard(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+        }
+        
+        // تشغيل الوظيفة عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', populateFonts);
+    </script>
 </body>
-</html>
+          </html>
