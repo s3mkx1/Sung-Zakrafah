@@ -3,20 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>حاسبة الحروف ومغير الخطوط</title>
+    <title>زخرفة انجليزي</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --primary-color: #4a6ee0;
-            --secondary-color: #6c757d;
-            --accent-color: #ff6b6b;
-            --light-color: #f8f9fa;
-            --dark-color: #343a40;
-            --success-color: #28a745;
-            --border-radius: 12px;
-            --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-        
         * {
             margin: 0;
             padding: 0;
@@ -25,228 +14,178 @@
         }
         
         body {
-            background-color: #f5f7fb;
-            color: var(--dark-color);
-            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-            padding: 20px;
-            background: white;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-        }
-        
-        h1 {
-            color: var(--primary-color);
-            margin-bottom: 10px;
-            font-size: 2.5rem;
-        }
-        
-        .subtitle {
-            color: var(--secondary-color);
-            font-size: 1.1rem;
-        }
-        
-        .main-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-bottom: 30px;
-        }
-        
-        @media (max-width: 768px) {
-            .main-content {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        .card {
-            background: white;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            padding: 25px;
-            transition: transform 0.3s ease;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .card-title {
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #e9ecef;
-            font-size: 1.5rem;
-        }
-        
-        .input-group {
-            margin-bottom: 20px;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: var(--dark-color);
-        }
-        
-        textarea, select, input {
             width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e9ecef;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
+            max-width: 500px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
         }
         
-        textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        textarea:focus, select:focus, input:focus {
-            outline: none;
-            border-color: var(--primary-color);
-        }
-        
-        .btn {
-            background: var(--primary-color);
+        .header {
+            background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
             color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: 600;
-            transition: background 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .btn:hover {
-            background: #3a5ecf;
-        }
-        
-        .btn-copy {
-            background: var(--success-color);
-        }
-        
-        .btn-copy:hover {
-            background: #218838;
-        }
-        
-        .result-box {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 15px;
-            margin-top: 15px;
-            min-height: 50px;
-            border: 1px dashed #dee2e6;
-            font-size: 1.1rem;
-            word-break: break-word;
-        }
-        
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .stat-item {
+            padding: 25px;
             text-align: center;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 8px;
         }
         
-        .stat-value {
+        .header h1 {
             font-size: 1.8rem;
+            margin-bottom: 5px;
             font-weight: 700;
-            color: var(--primary-color);
         }
         
-        .stat-label {
+        .header p {
             font-size: 0.9rem;
-            color: var(--secondary-color);
-            margin-top: 5px;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 25px;
+        }
+        
+        .input-section {
+            margin-bottom: 25px;
+        }
+        
+        .input-label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #555;
+            font-size: 0.9rem;
+        }
+        
+        .text-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 1rem;
+            background: #f8f9fa;
+            transition: all 0.3s;
+        }
+        
+        .text-input:focus {
+            outline: none;
+            border-color: #D2691E;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(210, 105, 30, 0.1);
+        }
+        
+        .fonts-section {
+            margin-bottom: 25px;
+        }
+        
+        .section-title {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            color: #555;
+            font-weight: 600;
         }
         
         .fonts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
         }
         
         .font-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             padding: 15px;
-            border: 2px solid #e9ecef;
-            border-radius: 8px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border: 2px solid #e0e0e0;
             cursor: pointer;
-            text-align: center;
             transition: all 0.3s;
         }
         
         .font-item:hover {
-            border-color: var(--primary-color);
-            background: #f0f4ff;
+            border-color: #D2691E;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
         
         .font-item.active {
-            border-color: var(--primary-color);
-            background: #e6eeff;
-        }
-        
-        .font-preview {
-            font-size: 1.2rem;
-            margin-bottom: 8px;
-            min-height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            border-color: #D2691E;
+            background: #fff9f0;
         }
         
         .font-name {
-            font-size: 0.85rem;
-            color: var(--secondary-color);
+            font-size: 0.9rem;
+            color: #555;
+            font-weight: 500;
+        }
+        
+        .font-preview {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #8B4513;
         }
         
         .action-buttons {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             margin-top: 20px;
         }
         
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            padding: 20px;
-            color: var(--secondary-color);
-            font-size: 0.9rem;
-            border-top: 1px solid #e9ecef;
+        .btn {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.3);
+        }
+        
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #555;
+            border: 2px solid #e0e0e0;
+        }
+        
+        .btn-secondary:hover {
+            background: #e9ecef;
+            transform: translateY(-2px);
         }
         
         .notification {
             position: fixed;
             top: 20px;
             right: 20px;
-            background: var(--success-color);
+            background: #28a745;
             color: white;
             padding: 15px 25px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             transform: translateX(150%);
             transition: transform 0.5s ease;
             z-index: 1000;
@@ -256,213 +195,177 @@
             transform: translateX(0);
         }
         
-        .tabs {
-            display: flex;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #e9ecef;
+        .result-section {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border: 2px dashed #e0e0e0;
         }
         
-        .tab {
-            padding: 12px 25px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
+        .result-title {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            color: #555;
             font-weight: 600;
-            color: var(--secondary-color);
-            border-bottom: 3px solid transparent;
-            transition: all 0.3s;
         }
         
-        .tab.active {
-            color: var(--primary-color);
-            border-bottom-color: var(--primary-color);
+        .result-text {
+            font-size: 1.2rem;
+            min-height: 60px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            word-break: break-word;
         }
         
-        .tab-content {
-            display: none;
-        }
-        
-        .tab-content.active {
-            display: block;
+        @media (max-width: 480px) {
+            .container {
+                margin: 10px;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>حاسبة الحروف ومغير الخطوط</h1>
-            <p class="subtitle">عدّ الحروف، الكلمات، السطور وغيرها مع إمكانية تغيير الخطوط</p>
-        </header>
+        <div class="header">
+            <h1>زخرفة انجليزي</h1>
+            <p>أكتب النص هنا</p>
+        </div>
         
-        <div class="main-content">
-            <div class="card">
-                <h2 class="card-title">حاسبة النص</h2>
-                <div class="input-group">
-                    <label for="textInput">أدخل النص الخاص بك:</label>
-                    <textarea id="textInput" placeholder="اكتب أو الصق النص هنا...">مرحبا بك في موقع حاسبة الحروف ومغير الخطوط. يمكنك استخدام هذه الأداة لعد الحروف والكلمات وتغيير الخطوط.</textarea>
-                </div>
-                
-                <div class="stats">
-                    <div class="stat-item">
-                        <div class="stat-value" id="charCount">0</div>
-                        <div class="stat-label">الحروف</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value" id="wordCount">0</div>
-                        <div class="stat-label">الكلمات</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value" id="lineCount">0</div>
-                        <div class="stat-label">السطور</div>
-                    </div>
-                </div>
-                
-                <div class="action-buttons">
-                    <button class="btn" id="clearBtn">
-                        <i class="fas fa-eraser"></i> مسح النص
-                    </button>
-                    <button class="btn btn-copy" id="copyTextBtn">
-                        <i class="far fa-copy"></i> نسخ النص
-                    </button>
+        <div class="content">
+            <div class="input-section">
+                <label class="input-label">النص المدخل</label>
+                <input type="text" class="text-input" id="textInput" placeholder="أدخل النص هنا...">
+            </div>
+            
+            <div class="fonts-section">
+                <h3 class="section-title">أنماط الزخرفة</h3>
+                <div class="fonts-grid" id="fontsContainer">
+                    <!-- سيتم ملؤها بالجافاسكريبت -->
                 </div>
             </div>
             
-            <div class="card">
-                <h2 class="card-title">مغير الخطوط</h2>
-                
-                <div class="tabs">
-                    <button class="tab active" data-tab="fonts">الخطوط</button>
-                    <button class="tab" data-tab="decorations">الزخارف</button>
-                </div>
-                
-                <div class="tab-content active" id="fonts-tab">
-                    <div class="input-group">
-                        <label for="fontPreview">معاينة الخط:</label>
-                        <div class="result-box" id="fontPreview">نص المعاينة</div>
-                    </div>
-                    
-                    <div class="fonts-grid" id="fontsContainer">
-                        <!-- سيتم ملؤها بالجافاسكريبت -->
-                    </div>
-                </div>
-                
-                <div class="tab-content" id="decorations-tab">
-                    <div class="input-group">
-                        <label for="decorationPreview">معاينة الزخرفة:</label>
-                        <div class="result-box" id="decorationPreview">نص المعاينة</div>
-                    </div>
-                    
-                    <div class="fonts-grid" id="decorationsContainer">
-                        <!-- سيتم ملؤها بالجافاسكريبت -->
-                    </div>
-                </div>
-                
-                <div class="action-buttons">
-                    <button class="btn btn-copy" id="copyFontBtn">
-                        <i class="far fa-copy"></i> نسخ النص المزخرف
-                    </button>
-                </div>
+            <div class="result-section">
+                <div class="result-title">الناتج</div>
+                <div class="result-text" id="resultText">سيظهر النص المزخرف هنا</div>
+            </div>
+            
+            <div class="action-buttons">
+                <button class="btn btn-secondary" id="clearBtn">
+                    <i class="fas fa-eraser"></i> مسح
+                </button>
+                <button class="btn btn-primary" id="copyBtn">
+                    <i class="far fa-copy"></i> نسخ
+                </button>
             </div>
         </div>
-        
-        <footer>
-            <p>© 2023 حاسبة الحروف ومغير الخطوط. جميع الحقوق محفوظة.</p>
-        </footer>
     </div>
 
     <div class="notification" id="notification">تم النسخ إلى الحافظة!</div>
 
     <script>
-        // بيانات الخطوط
-        const fontsData = [
-            { name: "عادي", family: "Arial, sans-serif", className: "normal" },
-            { name: "عريض", family: "'Arial Black', sans-serif", className: "bold" },
-            { name: "مائل", family: "Arial, sans-serif", className: "italic", style: "italic" },
-            { name: "عريض مائل", family: "'Arial Black', sans-serif", className: "bold-italic", style: "italic" },
-            { name: "كتابة", family: "'Segoe Script', cursive", className: "script" },
-            { name: "يدوي", family: "'Comic Sans MS', cursive", className: "handwriting" },
-            { name: "زخرفي", family: "'Times New Roman', serif", className: "decorative" },
-            { name: "عرض كامل", family: "'Courier New', monospace", className: "monospace" }
-        ];
-
-        // بيانات الزخارف
-        const decorationsData = [
-            { name: "منقط", template: "A̤B̤C̤D̤E̤F̤G̤H̤I̤J̤K̤L̤M̤N̤O̤P̤Q̤R̤S̤T̤ṲV̤W̤X̤Y̤Z̤" },
-            { name: "خط سفلي", template: "A̲B̲C̲D̲E̲F̲G̲H̲I̲J̲K̲L̲M̲N̲O̲P̲Q̲R̲S̲T̲U̲V̲W̲X̲Y̲Z̲" },
-            { name: "خط علوي", template: "A̅B̅C̅D̅E̅F̅G̅H̅I̅J̅K̅L̅M̅N̅O̅P̅Q̅R̅S̅T̅U̅V̅W̅X̅Y̅Z̅" },
-            { name: "متشطب", template: "A̶B̶C̶D̶E̶F̶G̶H̶I̶J̶K̶L̶M̶N̶O̶P̶Q̶R̶S̶T̶U̶V̶W̶X̶Y̶Z̶" },
-            { name: "مزدوج", template: "𝔸𝔹ℂ𝔻𝔼𝔽𝔾ℍ𝕀𝕁𝕂𝕃𝕄ℕ𝕆ℙℚℝ𝕊𝕋𝕌𝕍𝕎𝕏𝕐ℤ" },
-            { name: "زخرفي", template: "𝒜𝐵𝒞𝒟𝐸𝐹𝒢𝐻𝐼𝒥𝒦𝐿𝑀𝒩𝒪𝒫𝒬𝑅𝒮𝒯𝒰𝒱𝒲𝒳𝒴𝒵" },
-            { name: "يدوي", template: "𝓐𝓑𝓒𝓓𝓔𝓕𝓖𝓗𝓘𝓙𝓚𝓛𝓜𝓝𝓞𝓟𝓠𝓡𝓢𝓣𝓤𝓥𝓦𝓧𝓨𝓩" },
-            { name: "عريض", template: "𝗔𝗕𝗖𝗗𝗘𝗙𝗚𝗛𝗜𝗝𝗞𝗟𝗠𝗡𝗢𝗣𝗤𝗥𝗦𝗧𝗨𝗩𝗪𝗫𝗬𝗭" }
+        // بيانات أنماط الزخرفة
+        const fontStyles = [
+            {
+                name: "إبراز النص",
+                preview: "Bold",
+                template: "𝗔𝗕𝗖𝗗𝗘𝗙𝗚𝗛𝗜𝗝𝗞𝗟𝗠𝗡𝗢𝗣𝗤𝗥𝗦𝗧𝗨𝗩𝗪𝗫𝗬𝗭"
+            },
+            {
+                name: "إبراز النص",
+                preview: "Bold",
+                template: "𝐀𝐁𝐂𝐃𝐄𝐅𝐆𝐇𝐈𝐉𝐊𝐋𝐌𝐍𝐎𝐏𝐐𝐑𝐒𝐓𝐔𝐕𝐖𝐗𝐘𝐙"
+            },
+            {
+                name: "نص فقاعي",
+                preview: "B U B B L E",
+                template: "🅐 🅑 🅒 🅓 🅔 🅕 🅖 🅗 🅘 🅙 🅚 🅛 🅜 🅝 🅞 🅟 🅠 🅡 🅢 🅣 🅤 🅥 🅦 🅧 🅨 🅩"
+            },
+            {
+                name: "نص فقاعي",
+                preview: "B U B B L E",
+                template: "🄰 🄱 🄲 🄳 🄴 🄵 🄶 🄷 🄸 🄹 🄺 🄻 🄼 🄽 🄾 🄿 🅀 🅁 🅂 🅃 🅄 🅅 🅆 🅇 🅈 🅉"
+            },
+            {
+                name: "نص مائل",
+                preview: "Italic",
+                template: "𝘈𝘉𝘊𝘋𝘌𝘍𝘎𝘏𝘐𝘑𝘒𝘓𝘔𝘕𝘖𝘗𝘘𝘙𝘚𝘛𝘜𝘝𝘞𝘟𝘠𝘡"
+            },
+            {
+                name: "نص مائل عريض",
+                preview: "Bold Italic",
+                template: "𝘼𝘽𝘾𝘿𝙀𝙁𝙂𝙃𝙄𝙅𝙆𝙇𝙈𝙉𝙊𝙋𝙌𝙍𝙎𝙏𝙐𝙑𝙒𝙓𝙔𝙕"
+            },
+            {
+                name: "نص يدوي",
+                preview: "Script",
+                template: "𝒜𝐵𝒞𝒟𝐸𝐹𝒢𝐻𝐼𝒥𝒦𝐿𝑀𝒩𝒪𝒫𝒬𝑅𝒮𝒯𝒰𝒱𝒲𝒳𝒴𝒵"
+            },
+            {
+                name: "نص زخرفي",
+                preview: "Fancy",
+                template: "𝔄𝔅ℭ𝔇𝔈𝔉𝔊ℌℑ𝔍𝔎𝔏𝔐𝔑𝔒𝔓𝔔ℜ𝔖𝔗𝔘𝔙𝔚𝔛𝔜ℨ"
+            },
+            {
+                name: "نص مزدوج",
+                preview: "Double",
+                template: "𝔸𝔹ℂ𝔻𝔼𝔽𝔾ℍ𝕀𝕁𝕂𝕃𝕄ℕ𝕆ℙℚℝ𝕊𝕋𝕌𝕍𝕎𝕏𝕐ℤ"
+            },
+            {
+                name: "نص منقط",
+                preview: "Dotted",
+                template: "A̤B̤C̤D̤E̤F̤G̤H̤I̤J̤K̤L̤M̤N̤O̤P̤Q̤R̤S̤T̤ṲV̤W̤X̤Y̤Z̤"
+            }
         ];
 
         // عناصر DOM
         const textInput = document.getElementById('textInput');
-        const charCount = document.getElementById('charCount');
-        const wordCount = document.getElementById('wordCount');
-        const lineCount = document.getElementById('lineCount');
-        const clearBtn = document.getElementById('clearBtn');
-        const copyTextBtn = document.getElementById('copyTextBtn');
-        const fontPreview = document.getElementById('fontPreview');
-        const decorationPreview = document.getElementById('decorationPreview');
+        const resultText = document.getElementById('resultText');
         const fontsContainer = document.getElementById('fontsContainer');
-        const decorationsContainer = document.getElementById('decorationsContainer');
-        const copyFontBtn = document.getElementById('copyFontBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const copyBtn = document.getElementById('copyBtn');
         const notification = document.getElementById('notification');
-        const tabs = document.querySelectorAll('.tab');
-        const tabContents = document.querySelectorAll('.tab-content');
 
-        // تهيئة الخطوط والزخارف
+        // تهيئة أنماط الزخرفة
         function initializeFonts() {
-            fontsData.forEach(font => {
+            fontStyles.forEach((font, index) => {
                 const fontItem = document.createElement('div');
                 fontItem.className = 'font-item';
+                if (index === 0) fontItem.classList.add('active');
+                
                 fontItem.innerHTML = `
-                    <div class="font-preview" style="font-family: ${font.family}; font-style: ${font.style || 'normal'}">نص تجريبي</div>
                     <div class="font-name">${font.name}</div>
+                    <div class="font-preview">${font.preview}</div>
                 `;
+                
                 fontItem.addEventListener('click', () => {
-                    document.querySelectorAll('#fontsContainer .font-item').forEach(item => {
+                    // إزالة النشاط من جميع العناصر
+                    document.querySelectorAll('.font-item').forEach(item => {
                         item.classList.remove('active');
                     });
+                    
+                    // إضافة النشاط للعنصر المحدد
                     fontItem.classList.add('active');
-                    fontPreview.style.fontFamily = font.family;
-                    fontPreview.style.fontStyle = font.style || 'normal';
+                    
+                    // تحديث النتيجة
+                    updateResult(font.template);
                 });
+                
                 fontsContainer.appendChild(fontItem);
             });
-
-            // تحديد أول خط بشكل افتراضي
-            fontsContainer.firstChild.classList.add('active');
-            fontPreview.style.fontFamily = fontsData[0].family;
         }
 
-        function initializeDecorations() {
-            decorationsData.forEach(decoration => {
-                const decorationItem = document.createElement('div');
-                decorationItem.className = 'font-item';
-                decorationItem.innerHTML = `
-                    <div class="font-preview">${convertText('نص تجريبي', decoration.template)}</div>
-                    <div class="font-name">${decoration.name}</div>
-                `;
-                decorationItem.addEventListener('click', () => {
-                    document.querySelectorAll('#decorationsContainer .font-item').forEach(item => {
-                        item.classList.remove('active');
-                    });
-                    decorationItem.classList.add('active');
-                    decorationPreview.textContent = convertText('نص تجريبي', decoration.template);
-                });
-                decorationsContainer.appendChild(decorationItem);
-            });
-
-            // تحديد أول زخرفة بشكل افتراضي
-            decorationsContainer.firstChild.classList.add('active');
-            decorationPreview.textContent = convertText('نص تجريبي', decorationsData[0].template);
-        }
-
-        // تحويل النص إلى زخرفة
+        // تحويل النص إلى الزخرفة المحددة
         function convertText(text, template) {
             const normalAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
             const templateAlphabet = template.replace(/ /g, '');
@@ -481,20 +384,16 @@
             return result;
         }
 
-        // عد الحروف والكلمات والسطور
-        function updateTextStats() {
+        // تحديث النتيجة
+        function updateResult(template) {
             const text = textInput.value;
+            if (text.trim() === '') {
+                resultText.textContent = 'سيظهر النص المزخرف هنا';
+                return;
+            }
             
-            // عد الحروف
-            charCount.textContent = text.length;
-            
-            // عد الكلمات
-            const words = text.trim().split(/\s+/).filter(word => word.length > 0);
-            wordCount.textContent = words.length;
-            
-            // عد السطور
-            const lines = text.split('\n').filter(line => line.trim().length > 0);
-            lineCount.textContent = lines.length;
+            const convertedText = convertText(text, template);
+            resultText.textContent = convertedText;
         }
 
         // نسخ النص إلى الحافظة
@@ -513,61 +412,37 @@
             }, 2000);
         }
 
-        // إعداد التبويبات
-        function setupTabs() {
-            tabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    const tabId = tab.getAttribute('data-tab');
-                    
-                    // إزالة النشاط من جميع التبويبات والمحتويات
-                    tabs.forEach(t => t.classList.remove('active'));
-                    tabContents.forEach(tc => tc.classList.remove('active'));
-                    
-                    // إضافة النشاط للتبويب والمحتوى المحدد
-                    tab.classList.add('active');
-                    document.getElementById(`${tabId}-tab`).classList.add('active');
-                });
-            });
-        }
-
         // تهيئة الصفحة
         document.addEventListener('DOMContentLoaded', () => {
             initializeFonts();
-            initializeDecorations();
-            setupTabs();
-            updateTextStats();
             
-            // تحديث الإحصائيات عند الكتابة
-            textInput.addEventListener('input', updateTextStats);
+            // تحديث النتيجة عند الكتابة
+            textInput.addEventListener('input', () => {
+                const activeFont = document.querySelector('.font-item.active');
+                if (activeFont) {
+                    const fontIndex = Array.from(fontsContainer.children).indexOf(activeFont);
+                    updateResult(fontStyles[fontIndex].template);
+                }
+            });
             
             // مسح النص
             clearBtn.addEventListener('click', () => {
                 textInput.value = '';
-                updateTextStats();
+                resultText.textContent = 'سيظهر النص المزخرف هنا';
+                textInput.focus();
             });
             
-            // نسخ النص الأصلي
-            copyTextBtn.addEventListener('click', () => {
-                copyToClipboard(textInput.value);
-            });
-            
-            // نسخ النص المزخرف
-            copyFontBtn.addEventListener('click', () => {
-                const activeTab = document.querySelector('.tab.active').getAttribute('data-tab');
-                if (activeTab === 'fonts') {
-                    const activeFont = document.querySelector('#fontsContainer .font-item.active');
-                    if (activeFont) {
-                        copyToClipboard(textInput.value);
-                    }
-                } else {
-                    const activeDecoration = document.querySelector('#decorationsContainer .font-item.active');
-                    if (activeDecoration) {
-                        const decorationIndex = Array.from(decorationsContainer.children).indexOf(activeDecoration);
-                        const decoratedText = convertText(textInput.value, decorationsData[decorationIndex].template);
-                        copyToClipboard(decoratedText);
-                    }
+            // نسخ النص
+            copyBtn.addEventListener('click', () => {
+                if (resultText.textContent !== 'سيظهر النص المزخرف هنا') {
+                    copyToClipboard(resultText.textContent);
                 }
             });
+            
+            // تحديد أول نمط بشكل افتراضي
+            if (fontsContainer.firstChild) {
+                fontsContainer.firstChild.click();
+            }
         });
     </script>
 </body>
