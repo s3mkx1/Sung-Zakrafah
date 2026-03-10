@@ -1,818 +1,479 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alastor Bot - The Radio Demon</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #ff0000;
-            --secondary: #ff4444;
-            --accent: #ff6666;
-            --dark: #0a0000;
-            --dark-alt: #1a0505;
-            --purple: #cc0000;
-            --gold: #ff8888;
-            --red-glow: #ff0000;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: var(--dark);
-            color: #fff;
-            overflow-x: hidden;
-            position: relative;
-            min-height: 100vh;
-        }
-
-        /* Animated Gradient Background */
-        .bg-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            background: linear-gradient(45deg, 
-                #0a0000 0%, 
-                #1a0000 25%,
-                #2d0000 50%,
-                #1a0000 75%,
-                #0a0000 100%);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
-        }
-
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        /* Floating Particles */
-        .particles-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .particle {
-            position: absolute;
-            border-radius: 50%;
-            pointer-events: none;
-            opacity: 0.4;
-            filter: blur(2px);
-        }
-
-        /* Container */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Header Section */
-        .hero {
-            text-align: center;
-            padding: 80px 20px 60px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(255, 0, 0, 0.4) 0%, transparent 70%);
-            filter: blur(80px);
-            animation: pulse 4s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.5; }
-            50% { transform: translateX(-50%) scale(1.2); opacity: 0.8; }
-        }
-
-        .logo-container {
-            margin-bottom: 30px;
-            position: relative;
-        }
-
-        .logo-circle {
-            width: 180px;
-            height: 180px;
-            margin: 0 auto;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary), var(--purple));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 80px;
-            box-shadow: 
-                0 0 60px rgba(255, 8, 68, 0.6),
-                0 0 100px rgba(157, 0, 255, 0.4);
-            animation: rotate 10s linear infinite;
-            position: relative;
-        }
-
-        .logo-circle::before {
-            content: '';
-            position: absolute;
-            top: -5px;
-            left: -5px;
-            right: -5px;
-            bottom: -5px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, var(--accent), var(--gold), var(--primary));
-            z-index: -1;
-            filter: blur(20px);
-            opacity: 0.7;
-            animation: rotate 8s linear infinite reverse;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .main-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 5rem;
-            font-weight: 700;
-            background: linear-gradient(90deg, var(--primary), var(--accent), var(--purple), var(--gold));
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradientText 5s ease infinite;
-            margin-bottom: 15px;
-            letter-spacing: 3px;
-            text-shadow: 0 0 30px rgba(255, 8, 68, 0.5);
-        }
-
-        @keyframes gradientText {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .subtitle {
-            font-size: 1.5rem;
-            color: var(--secondary);
-            font-weight: 300;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-        }
-
-        .tagline {
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.7);
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-
-        /* Music Status */
-        .music-status {
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
-            background: rgba(26, 26, 46, 0.9);
-            backdrop-filter: blur(20px);
-            border-radius: 50px;
-            padding: 15px 25px;
-            border: 1px solid rgba(255, 8, 68, 0.3);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            z-index: 1000;
-            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        .music-icon {
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary), var(--purple));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: pulse-music 2s ease infinite;
-        }
-
-        @keyframes pulse-music {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        .music-text {
-            font-size: 0.9rem;
-            color: var(--secondary);
-        }
-
-        /* Glass Card */
-        .glass-card {
-            background: rgba(26, 26, 46, 0.6);
-            backdrop-filter: blur(20px);
-            border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 40px;
-            box-shadow: 
-                0 8px 32px rgba(0, 0, 0, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .glass-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: left 0.5s;
-        }
-
-        .glass-card:hover::before {
-            left: 100%;
-        }
-
-        .glass-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(255, 8, 68, 0.5);
-            box-shadow: 
-                0 20px 60px rgba(255, 8, 68, 0.3),
-                0 0 40px rgba(157, 0, 255, 0.2);
-        }
-
-        /* Grid Layout */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin: 50px 0;
-        }
-
-        .card-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid rgba(255, 8, 68, 0.3);
-        }
-
-        .card-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 15px;
-            background: linear-gradient(135deg, var(--primary), var(--purple));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            box-shadow: 0 5px 20px rgba(255, 8, 68, 0.4);
-        }
-
-        .card-title {
-            font-size: 1.8rem;
-            font-weight: 600;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* Contact Items */
-        .contact-list {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .contact-item {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 20px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .contact-item::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 3px;
-            background: linear-gradient(180deg, var(--primary), var(--purple));
-            transform: scaleY(0);
-            transition: transform 0.3s ease;
-        }
-
-        .contact-item:hover {
-            background: rgba(255, 8, 68, 0.1);
-            border-color: var(--primary);
-            transform: translateX(10px);
-        }
-
-        .contact-item:hover::before {
-            transform: scaleY(1);
-        }
-
-        .contact-label {
-            font-size: 0.85rem;
-            color: var(--secondary);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-
-        .contact-value {
-            font-size: 1.2rem;
-            color: #fff;
-            direction: ltr;
-            text-align: right;
-            font-weight: 500;
-        }
-
-        .contact-value a {
-            color: var(--accent);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .contact-value a:hover {
-            color: var(--primary);
-            text-shadow: 0 0 20px var(--primary);
-            transform: translateX(-5px);
-        }
-
-        /* Buttons */
-        .btn-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-            margin: 40px 0;
-        }
-
-        .btn {
-            padding: 18px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--purple));
-            color: #fff;
-            border: none;
-            box-shadow: 0 5px 25px rgba(255, 8, 68, 0.4);
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--accent);
-            border: 2px solid var(--accent);
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            transform: translate(-50%, -50%);
-            transition: width 0.5s, height 0.5s;
-        }
-
-        .btn:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 40px rgba(255, 8, 68, 0.6);
-        }
-
-        .btn span {
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Stats Section */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin: 40px 0;
-        }
-
-        .stat-card {
-            background: rgba(26, 26, 46, 0.6);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-            box-shadow: 0 10px 30px rgba(255, 8, 68, 0.3);
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 10px;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: var(--secondary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            margin-top: 60px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        .footer-text {
-            font-size: 0.95rem;
-            margin-bottom: 10px;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .footer-links a {
-            color: var(--accent);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: var(--primary);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .main-title {
-                font-size: 3rem;
-            }
-
-            .subtitle {
-                font-size: 1.2rem;
-            }
-
-            .cards-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .logo-circle {
-                width: 140px;
-                height: 140px;
-                font-size: 60px;
-            }
-
-            .music-status {
-                bottom: 20px;
-                left: 20px;
-                padding: 12px 20px;
-            }
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in {
-            animation: fadeInUp 0.8s ease forwards;
-        }
-
-        /* Hidden Audio Element */
-        #bgMusic {
-            display: none;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ω OMEGA — إدارة المشتركين</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --gold:#f0b429;--gold2:#ffd97d;--green:#22c55e;--red:#ef4444;--yellow:#eab308;
+  --bg:#07070f;--bg2:#0d0d1c;--card:#111127;--border:rgba(240,180,41,0.18);
+  --text:#e2e2f0;--muted:#6b6b90;
+}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 35% at 50% -5%,rgba(240,180,41,0.07) 0%,transparent 65%),radial-gradient(ellipse 50% 40% at 10% 100%,rgba(60,40,180,0.06) 0%,transparent 60%);pointer-events:none;z-index:0}
+
+.page{display:none;position:relative;z-index:1}
+.page.active{display:block}
+
+.nav-tabs{position:relative;z-index:2;display:flex;justify-content:center;background:var(--bg2);border-bottom:1px solid var(--border)}
+.nav-tab{flex:1;max-width:220px;padding:15px 10px;text-align:center;font-size:14px;font-weight:700;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:all .25s}
+.nav-tab.active{color:var(--gold);border-bottom-color:var(--gold)}
+.nav-tab:hover{color:var(--text)}
+
+/* LOGIN OVERLAY */
+.login-overlay{position:fixed;inset:0;background:rgba(7,7,15,0.97);z-index:999;display:flex;align-items:center;justify-content:center;padding:20px}
+.login-box{background:var(--card);border:1px solid var(--border);border-radius:22px;padding:40px 32px;text-align:center;width:100%;max-width:360px}
+.login-icon{font-size:48px;margin-bottom:14px}
+.login-title{font-size:22px;font-weight:900;color:#fff;margin-bottom:6px}
+.login-sub{font-size:13px;color:var(--muted);margin-bottom:24px}
+.login-box input{font-size:16px;text-align:center;letter-spacing:3px;margin-bottom:14px}
+.login-btn{width:100%;background:linear-gradient(135deg,#b8880a,#f0b429);border:none;border-radius:12px;padding:13px;font-family:'Cairo',sans-serif;font-size:16px;font-weight:900;color:#000;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.login-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(240,180,41,.3)}
+.login-error{margin-top:12px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);border-radius:10px;padding:10px;font-size:13px;font-weight:700;color:var(--red);display:none}
+.shake{animation:shake .4s ease}
+@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
+
+header{position:relative;z-index:1;text-align:center;padding:30px 20px 22px;border-bottom:1px solid var(--border)}
+.logo-row{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:4px}
+.omega{font-family:'Rajdhani',sans-serif;font-size:44px;color:var(--gold);text-shadow:0 0 30px rgba(240,180,41,0.5);line-height:1}
+.brand{font-family:'Rajdhani',sans-serif;font-size:34px;font-weight:700;letter-spacing:5px;color:#fff}
+.sub-title{font-size:13px;color:var(--muted);font-weight:600;letter-spacing:1px}
+
+.stats-bar{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;padding:16px 16px 0;position:relative;z-index:1}
+.stat-box{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:12px 20px;text-align:center;min-width:100px}
+.stat-num{font-family:'Rajdhani',sans-serif;font-size:30px;font-weight:700;line-height:1}
+.stat-num.gold{color:var(--gold)}.stat-num.green{color:var(--green)}.stat-num.red{color:var(--red)}.stat-num.yellow{color:var(--yellow)}
+.stat-label{font-size:11px;color:var(--muted);font-weight:700;margin-top:2px}
+
+main{position:relative;z-index:1;max-width:1100px;margin:20px auto 60px;padding:0 14px;display:grid;grid-template-columns:320px 1fr;gap:18px}
+@media(max-width:760px){main{grid-template-columns:1fr}}
+
+.form-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:22px 20px;height:fit-content;position:sticky;top:20px}
+.card-title{font-size:16px;font-weight:900;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:7px}
+.field{margin-bottom:12px}
+label{display:block;font-size:12px;font-weight:700;color:var(--muted);margin-bottom:5px}
+input,select{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 13px;font-family:'Cairo',sans-serif;font-size:14px;font-weight:600;color:var(--text);outline:none;transition:border-color .25s,box-shadow .25s;direction:rtl}
+input:focus,select:focus{border-color:rgba(240,180,41,.5);box-shadow:0 0 0 3px rgba(240,180,41,.08)}
+select option{background:#1a1a30}
+
+.pkg-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px}
+.pkg-btn{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:9px 5px;text-align:center;cursor:pointer;transition:all .2s;color:var(--text);font-family:'Cairo',sans-serif;font-weight:700;font-size:12px}
+.pkg-btn:hover{border-color:rgba(240,180,41,.4)}
+.pkg-btn.active{background:rgba(240,180,41,.12);border-color:var(--gold);color:var(--gold)}
+.pkg-btn .pkg-name{display:block;font-size:11px;margin-bottom:1px}
+.pkg-btn .pkg-days{font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:700;display:block}
+.pkg-btn .pkg-price{font-size:10px;color:var(--muted)}
+.submit-btn{width:100%;background:linear-gradient(135deg,#b8880a 0%,#f0b429 100%);border:none;border-radius:12px;padding:12px;font-family:'Cairo',sans-serif;font-size:15px;font-weight:900;color:#000;cursor:pointer;margin-top:4px;transition:transform .2s,box-shadow .2s}
+.submit-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(240,180,41,.3)}
+.submit-btn:active{transform:translateY(0)}
+
+.table-panel{background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:hidden}
+.table-header{padding:16px 18px 12px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);flex-wrap:wrap;gap:10px}
+.search-box{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:7px 12px;font-family:'Cairo',sans-serif;font-size:13px;color:var(--text);outline:none;width:180px;direction:rtl}
+.search-box:focus{border-color:rgba(240,180,41,.4)}
+.filter-tabs{display:flex;gap:5px;flex-wrap:wrap}
+.ftab{background:transparent;border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:5px 12px;font-family:'Cairo',sans-serif;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;transition:all .2s}
+.ftab.active,.ftab:hover{border-color:var(--gold);color:var(--gold);background:rgba(240,180,41,.08)}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:540px}
+thead tr{border-bottom:1px solid var(--border)}
+th{padding:10px 13px;font-size:11px;font-weight:700;color:var(--muted);text-align:right;white-space:nowrap}
+tbody tr{border-bottom:1px solid rgba(255,255,255,.04);transition:background .2s}
+tbody tr:hover{background:rgba(255,255,255,.025)}
+tbody tr:last-child{border-bottom:none}
+td{padding:11px 13px;font-size:13px;font-weight:600;white-space:nowrap}
+.name-cell{font-weight:900;color:#fff;font-size:14px}
+.days-badge{display:inline-flex;align-items:center;gap:4px;padding:4px 11px;border-radius:20px;font-weight:900;font-size:12px}
+.days-badge.good{background:rgba(34,197,94,.12);color:var(--green);border:1px solid rgba(34,197,94,.25)}
+.days-badge.warn{background:rgba(234,179,8,.12);color:var(--yellow);border:1px solid rgba(234,179,8,.25)}
+.days-badge.danger{background:rgba(239,68,68,.12);color:var(--red);border:1px solid rgba(239,68,68,.25)}
+.days-badge.expired{background:rgba(100,100,120,.15);color:var(--muted);border:1px solid rgba(100,100,120,.2)}
+.pkg-tag{background:rgba(240,180,41,.1);color:var(--gold);border:1px solid rgba(240,180,41,.2);padding:3px 9px;border-radius:6px;font-size:11px;font-weight:700}
+.del-btn{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);border-radius:7px;padding:5px 10px;color:var(--red);cursor:pointer;font-family:'Cairo',sans-serif;font-size:11px;font-weight:700;transition:all .2s}
+.del-btn:hover{background:rgba(239,68,68,.2);border-color:var(--red)}
+.renew-btn{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);border-radius:7px;padding:5px 10px;color:var(--green);cursor:pointer;font-family:'Cairo',sans-serif;font-size:11px;font-weight:700;transition:all .2s;margin-left:5px}
+.renew-btn:hover{background:rgba(34,197,94,.2);border-color:var(--green)}
+.progress-bar{height:3px;background:rgba(255,255,255,.06);border-radius:2px;margin-top:4px;overflow:hidden;width:70px}
+.progress-fill{height:100%;border-radius:2px}
+.empty-state{text-align:center;padding:50px 20px;color:var(--muted)}
+.empty-state .big{font-size:44px;margin-bottom:10px}
+.empty-state p{font-size:14px;font-weight:700}
+
+/* SUBSCRIBER LOOKUP */
+.sub-page{position:relative;z-index:1;min-height:70vh;display:flex;align-items:center;justify-content:center;padding:36px 16px 60px}
+.lookup-wrap{width:100%;max-width:440px}
+.lookup-card{background:var(--card);border:1px solid var(--border);border-radius:22px;padding:34px 28px;text-align:center}
+.lookup-icon{font-size:50px;margin-bottom:12px}
+.lookup-title{font-size:22px;font-weight:900;color:#fff;margin-bottom:6px}
+.lookup-sub{font-size:14px;color:var(--muted);margin-bottom:24px;line-height:1.7}
+.lookup-card input{font-size:18px;text-align:center;letter-spacing:2px;direction:ltr;margin-bottom:14px}
+.lookup-btn{width:100%;background:linear-gradient(135deg,#b8880a,#f0b429);border:none;border-radius:12px;padding:13px;font-family:'Cairo',sans-serif;font-size:16px;font-weight:900;color:#000;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.lookup-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(240,180,41,.3)}
+
+.result-card{margin-top:20px;background:var(--bg2);border:1px solid var(--border);border-radius:18px;padding:24px 22px;text-align:right;animation:slideIn .4s ease}
+.result-name{font-size:20px;font-weight:900;color:#fff;margin-bottom:12px}
+.days-circle{display:flex;flex-direction:column;align-items:center;justify-content:center;width:108px;height:108px;border-radius:50%;margin:14px auto 18px;border:3px solid}
+.days-circle .num{font-family:'Rajdhani',sans-serif;font-size:36px;font-weight:700;line-height:1}
+.days-circle .lbl{font-size:12px;font-weight:700;margin-top:2px}
+.days-circle.good{border-color:var(--green);color:var(--green);box-shadow:0 0 28px rgba(34,197,94,.15)}
+.days-circle.warn{border-color:var(--yellow);color:var(--yellow);box-shadow:0 0 28px rgba(234,179,8,.15)}
+.days-circle.danger{border-color:var(--red);color:var(--red);box-shadow:0 0 28px rgba(239,68,68,.15)}
+.days-circle.expired{border-color:var(--muted);color:var(--muted)}
+.result-row{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.result-row:last-child{border-bottom:none}
+.result-label{font-size:13px;color:var(--muted);font-weight:700}
+.result-value{font-size:14px;font-weight:900;color:var(--text)}
+.alert-msg{border-radius:10px;padding:11px 14px;font-size:13px;font-weight:700;margin-top:14px;text-align:center}
+.alert-danger{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);color:var(--red)}
+.alert-warn{background:rgba(234,179,8,.08);border:1px solid rgba(234,179,8,.25);color:var(--yellow)}
+.alert-ok{background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);color:var(--green)}
+.not-found{margin-top:16px;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);border-radius:12px;padding:20px;text-align:center;animation:slideIn .35s ease}
+.not-found .icon{font-size:32px;margin-bottom:8px}
+.not-found p{font-size:14px;font-weight:700;color:var(--red)}
+
+.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--card);border:1px solid var(--gold);border-radius:12px;padding:11px 22px;font-size:14px;font-weight:700;color:var(--gold);z-index:1000;transition:transform .35s cubic-bezier(.34,1.56,.64,1);white-space:nowrap;box-shadow:0 8px 32px rgba(0,0,0,.4)}
+.toast.show{transform:translateX(-50%) translateY(0)}
+@keyframes slideIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+/* LOGIN OVERLAY */
+.login-overlay{position:fixed;inset:0;background:rgba(7,7,15,0.97);z-index:999;display:flex;align-items:center;justify-content:center;padding:20px}
+.login-box{background:var(--card);border:1px solid var(--border);border-radius:22px;padding:40px 32px;text-align:center;width:100%;max-width:360px}
+.login-icon{font-size:48px;margin-bottom:14px}
+.login-title{font-size:22px;font-weight:900;color:#fff;margin-bottom:6px}
+.login-sub{font-size:13px;color:var(--muted);margin-bottom:24px}
+.login-box input{font-size:16px;text-align:center;letter-spacing:3px;margin-bottom:14px}
+.login-btn{width:100%;background:linear-gradient(135deg,#b8880a,#f0b429);border:none;border-radius:12px;padding:13px;font-family:'Cairo',sans-serif;font-size:16px;font-weight:900;color:#000;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.login-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(240,180,41,.3)}
+.login-error{margin-top:12px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);border-radius:10px;padding:10px;font-size:13px;font-weight:700;color:var(--red);display:none}
+@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
+</style>
 </head>
 <body>
-    <div class="bg-animation"></div>
-    <div class="particles-container" id="particles"></div>
 
-    <!-- Background Music -->
-    <audio id="bgMusic" loop>
-        <source src="music/alastor-theme.mp3" type="audio/mpeg">
-        <source src="alastor-music.mp3" type="audio/mpeg">
-    </audio>
+<header>
+  <div class="logo-row">
+    <span class="omega">Ω</span>
+    <span class="brand">OMEGA</span>
+  </div>
+  <p class="sub-title">⚡ منصة إدارة الاستضافة</p>
+</header>
 
-    <!-- Music Status Indicator -->
-    <div class="music-status">
-        <div class="music-icon">🎵</div>
-        <div class="music-text">Music Playing</div>
+<!-- ADMIN LOGIN OVERLAY -->
+<div class="login-overlay" id="loginOverlay" style="display:none">
+  <div class="login-box">
+    <div class="login-icon">🔐</div>
+    <div class="login-title">لوحة الأدمن</div>
+    <div class="login-sub">أدخل كلمة السر للدخول</div>
+    <input type="password" id="adminPass" placeholder="••••••••" onkeydown="if(event.key==='Enter')checkPass()">
+    <button class="login-btn" onclick="checkPass()">🔓 دخول</button>
+    <div class="login-error" id="loginError">❌ كلمة السر غلط، حاول تاني</div>
+  </div>
+</div>
+
+<div class="nav-tabs">
+  <div class="nav-tab" id="adminTab" onclick="switchPage('admin',this)" style="display:none">🛡️ لوحة الأدمن</div>
+  <div class="nav-tab active" id="subTab" onclick="switchPage('subscriber',this)">📱 تحقق من اشتراكي</div>
+  <div class="nav-tab" id="adminLoginTab" onclick="showAdminLogin()" style="font-size:12px">🔒 أدمن</div>
+</div>
+
+<!-- ADMIN PAGE -->
+<div class="page" id="page-admin">
+  <div class="stats-bar">
+    <div class="stat-box"><div class="stat-num gold" id="totalCount">0</div><div class="stat-label">إجمالي</div></div>
+    <div class="stat-box"><div class="stat-num green" id="activeCount">0</div><div class="stat-label">نشطين</div></div>
+    <div class="stat-box"><div class="stat-num yellow" id="warnCount">0</div><div class="stat-label">قارب الانتهاء</div></div>
+    <div class="stat-box"><div class="stat-num red" id="expiredCount">0</div><div class="stat-label">منتهي</div></div>
+  </div>
+
+  <main>
+    <aside>
+      <div class="form-card">
+        <div class="card-title"><span>➕</span> إضافة مشترك</div>
+        <div class="field"><label>اسم المشترك</label><input type="text" id="subName" placeholder="مثال: أحمد محمد"></div>
+        <div class="field"><label>رقم الهاتف</label><input type="tel" id="subPhone" placeholder="01012345678" style="direction:ltr;text-align:right"></div>
+        <div class="field"><label>تاريخ البداية</label><input type="date" id="startDate"></div>
+        <div class="field">
+          <label>اختر الباقة</label>
+          <div class="pkg-grid">
+            <button class="pkg-btn" data-days="30" data-pkg="باقة 1">
+              <span class="pkg-name">باقة 1</span><span class="pkg-days">30</span><span class="pkg-price">يوم • 20ج</span>
+            </button>
+            <button class="pkg-btn" data-days="30" data-pkg="باقة 2">
+              <span class="pkg-name">باقة 2</span><span class="pkg-days">30</span><span class="pkg-price">يوم • 30ج</span>
+            </button>
+            <button class="pkg-btn" data-days="30" data-pkg="باقة 3">
+              <span class="pkg-name">باقة 3</span><span class="pkg-days">30</span><span class="pkg-price">يوم • 50ج</span>
+            </button>
+          </div>
+        </div>
+        <div class="field"><label>مدة مخصصة (أيام)</label><input type="number" id="durationDays" placeholder="مثال: 30" min="1"></div>
+        <div class="field"><label>ملاحظة (اختياري)</label><input type="text" id="subNote" placeholder="أي ملاحظة..."></div>
+        <button class="submit-btn" onclick="addSubscriber()">✓ إضافة المشترك</button>
+      </div>
+    </aside>
+
+    <section>
+      <div class="table-panel">
+        <div class="table-header">
+          <div class="card-title" style="margin:0"><span>👥</span> المشتركون</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+            <input class="search-box" type="text" id="searchBox" placeholder="🔍 بحث..." oninput="renderTable()">
+            <div class="filter-tabs">
+              <button class="ftab active" onclick="setFilter('all',this)">الكل</button>
+              <button class="ftab" onclick="setFilter('active',this)">نشط</button>
+              <button class="ftab" onclick="setFilter('warn',this)">قريب</button>
+              <button class="ftab" onclick="setFilter('expired',this)">منتهي</button>
+            </div>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr>
+              <th>#</th><th>الاسم</th><th>الهاتف</th><th>الباقة</th><th>الانتهاء</th><th>الأيام المتبقية</th><th>إجراء</th>
+            </tr></thead>
+            <tbody id="tableBody"></tbody>
+          </table>
+          <div class="empty-state" id="emptyState">
+            <div class="big">🚀</div>
+            <p>لا يوجد مشتركين بعد — أضف أول مشترك!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- SUBSCRIBER PAGE -->
+<div class="page active" id="page-subscriber">
+  <div class="sub-page">
+    <div class="lookup-wrap">
+      <div class="lookup-card">
+        <div class="lookup-icon">📱</div>
+        <div class="lookup-title">تحقق من اشتراكك</div>
+        <div class="lookup-sub">أدخل رقم هاتفك المسجل<br>واعرف كام يوم فاضل في اشتراكك</div>
+        <input type="tel" id="lookupPhone" placeholder="01012345678" onkeydown="if(event.key==='Enter')lookupSub()">
+        <button class="lookup-btn" onclick="lookupSub()">🔍 تحقق الآن</button>
+        <div id="lookupResult"></div>
+      </div>
     </div>
+  </div>
+</div>
 
-    <div class="container">
-        <!-- Hero Section -->
-        <section class="hero fade-in">
-            <div class="logo-container">
-                <div class="logo-circle">
-                    🎭
-                </div>
-            </div>
-            <h1 class="main-title">ALASTOR</h1>
-            <p class="subtitle">The Radio Demon Bot</p>
-            <p class="tagline">
-                أهلاً بكم في عالم Alastor - بوت واتساب متطور يجمع بين القوة والأناقة
-            </p>
-        </section>
+<div class="toast" id="toast"></div>
 
-        <!-- Stats Section -->
-        <div class="stats-grid fade-in">
-            <div class="stat-card">
-                <div class="stat-number">24/7</div>
-                <div class="stat-label">متاح دائماً</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">100%</div>
-                <div class="stat-label">أمان وموثوقية</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">⚡</div>
-                <div class="stat-label">سرعة فائقة</div>
-            </div>
-        </div>
+<script>
+let subscribers = JSON.parse(localStorage.getItem('omega_subs')||'[]');
+let selectedPkg = null;
+let currentFilter = 'all';
 
-        <!-- Main Cards Grid -->
-        <div class="cards-grid">
-            <!-- Bot Info Card -->
-            <div class="glass-card fade-in">
-                <div class="card-header">
-                    <div class="card-icon">🤖</div>
-                    <h2 class="card-title">معلومات البوت</h2>
-                </div>
-                <div class="contact-list">
-                    <div class="contact-item">
-                        <div class="contact-label">📢 قناة البوت</div>
-                        <div class="contact-value">
-                            <a href="https://whatsapp.com/channel/0029VbCDfWu3QxRva29tI32A" target="_blank">
-                                <span>انضم للقناة</span>
-                                <span>→</span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-label">👥 جروب البوت</div>
-                        <div class="contact-value">
-                            <a href="https://chat.whatsapp.com/FhB5rIIh1gvA8eG97ieUHi" target="_blank">
-                                <span>انضم للجروب</span>
-                                <span>→</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+document.getElementById('startDate').valueAsDate = new Date();
 
-            <!-- Developers Card -->
-            <div class="glass-card fade-in">
-                <div class="card-header">
-                    <div class="card-icon">👨‍💻</div>
-                    <h2 class="card-title">المطورين</h2>
-                </div>
-                <div class="contact-list">
-                    <div class="contact-item">
-                        <div class="contact-label">⚡ Radio Demon</div>
-                        <div class="contact-value">
-                            <a href="https://wa.me/967730201713" target="_blank">
-                                <span>+967 730 201 713</span>
-                                <span>→</span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-label">🎨 Sung Designer</div>
-                        <div class="contact-value">
-                            <a href="https://wa.me/994404570051" target="_blank">
-                                <span>+994 404 570 051</span>
-                                <span>→</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+document.querySelectorAll('.pkg-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.pkg-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    selectedPkg={name:btn.dataset.pkg,days:parseInt(btn.dataset.days)};
+    document.getElementById('durationDays').value=btn.dataset.days;
+  });
+});
 
-            <!-- Features Card -->
-            <div class="glass-card fade-in">
-                <div class="card-header">
-                    <div class="card-icon">✨</div>
-                    <h2 class="card-title">المميزات</h2>
-                </div>
-                <div class="contact-list">
-                    <div class="contact-item">
-                        <div class="contact-label">⚡</div>
-                        <div class="contact-value" style="text-align: right; direction: rtl;">
-                            استجابة سريعة وفورية
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-label">🛡️</div>
-                        <div class="contact-value" style="text-align: right; direction: rtl;">
-                            حماية وأمان عالي
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-label">🎯</div>
-                        <div class="contact-value" style="text-align: right; direction: rtl;">
-                            أوامر متعددة ومميزة
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-label">🎨</div>
-                        <div class="contact-value" style="text-align: right; direction: rtl;">
-                            تصميم عصري وجذاب
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+const ADMIN_PASSWORD = 'omega2024';
+let adminLoggedIn = false;
 
-        <!-- Call to Action Buttons -->
-        <div class="btn-container fade-in">
-            <a href="https://whatsapp.com/channel/0029VbCDfWu3QxRva29tI32A" class="btn btn-primary" target="_blank">
-                <span>انضم للقناة</span>
-                <span>🚀</span>
-            </a>
-            <a href="https://chat.whatsapp.com/FhB5rIIh1gvA8eG97ieUHi" class="btn btn-secondary" target="_blank">
-                <span>انضم للجروب</span>
-                <span>💬</span>
-            </a>
-        </div>
+function showAdminLogin(){
+  document.getElementById('loginOverlay').style.display='flex';
+  document.getElementById('adminPass').value='';
+  document.getElementById('loginError').style.display='none';
+  setTimeout(()=>document.getElementById('adminPass').focus(),100);
+}
 
-        <!-- Footer -->
-        <footer class="fade-in">
-            <p class="footer-text">© 2024 Alastor Bot - The Radio Demon</p>
-            <p class="footer-text">صُنع بـ ❤️ من قبل فريق التطوير</p>
-            <div class="footer-links">
-                <a href="https://wa.me/967730201713" target="_blank">Radio Demon</a>
-                <span style="color: rgba(255, 255, 255, 0.3);">|</span>
-                <a href="https://wa.me/994404570051" target="_blank">Sung Designer</a>
-            </div>
-        </footer>
-    </div>
+function checkPass(){
+  const pass = document.getElementById('adminPass').value;
+  if(pass === ADMIN_PASSWORD){
+    adminLoggedIn = true;
+    document.getElementById('loginOverlay').style.display='none';
+    document.getElementById('adminTab').style.display='';
+    document.getElementById('adminLoginTab').style.display='none';
+    switchPage('admin', document.getElementById('adminTab'));
+  } else {
+    const box = document.getElementById('loginOverlay').querySelector('.login-box');
+    const err = document.getElementById('loginError');
+    err.style.display='block';
+    box.style.animation='none';
+    setTimeout(()=>{ box.style.animation='shake .4s ease'; },10);
+    document.getElementById('adminPass').value='';
+    document.getElementById('adminPass').focus();
+  }
+}
 
-    <script>
-        // Auto-play background music
-        const bgMusic = document.getElementById('bgMusic');
-        
-        // Try to autoplay on page load
-        window.addEventListener('load', () => {
-            bgMusic.play().catch(error => {
-                console.log('Autoplay prevented, waiting for user interaction');
-            });
-        });
+function switchPage(page,el){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('page-'+page).classList.add('active');
+  el.classList.add('active');
+  if(page==='subscriber'){
+    document.getElementById('lookupResult').innerHTML='';
+    document.getElementById('lookupPhone').value='';
+    setTimeout(()=>document.getElementById('lookupPhone').focus(),200);
+  }
+}
 
-        // Play music on first user interaction
-        const startMusic = () => {
-            bgMusic.play().catch(error => {
-                console.log('Music play failed');
-            });
-            document.removeEventListener('click', startMusic);
-            document.removeEventListener('touchstart', startMusic);
-        };
+function addSubscriber(){
+  const name=document.getElementById('subName').value.trim();
+  const phone=document.getElementById('subPhone').value.trim();
+  const start=document.getElementById('startDate').value;
+  const days=parseInt(document.getElementById('durationDays').value);
+  const note=document.getElementById('subNote').value.trim();
+  if(!name){showToast('❗ أدخل اسم المشترك');return}
+  if(!phone){showToast('❗ أدخل رقم الهاتف');return}
+  if(!start){showToast('❗ اختر تاريخ البداية');return}
+  if(!days||days<1){showToast('❗ اختر الباقة أو أدخل عدد الأيام');return}
+  const endDate=new Date(start);
+  endDate.setDate(endDate.getDate()+days);
+  subscribers.push({
+    id:Date.now(),name,phone,
+    pkg:selectedPkg?selectedPkg.name:days+' يوم',
+    start,end:endDate.toISOString().split('T')[0],days,note
+  });
+  save();renderTable();updateStats();
+  showToast('✅ تم إضافة '+name+' بنجاح!');
+  document.getElementById('subName').value='';
+  document.getElementById('subPhone').value='';
+  document.getElementById('subNote').value='';
+  document.getElementById('durationDays').value='';
+  document.querySelectorAll('.pkg-btn').forEach(b=>b.classList.remove('active'));
+  selectedPkg=null;
+  document.getElementById('startDate').valueAsDate=new Date();
+}
 
-        document.addEventListener('click', startMusic);
-        document.addEventListener('touchstart', startMusic);
+function deleteSubscriber(id){
+  const s=subscribers.find(x=>x.id===id);
+  subscribers=subscribers.filter(x=>x.id!==id);
+  save();renderTable();updateStats();
+  showToast('🗑️ تم حذف '+s.name);
+}
 
-        // Create floating particles
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const colors = ['#ff0844', '#00d9ff', '#9d00ff', '#ffd700'];
-            
-            for (let i = 0; i < 50; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.width = Math.random() * 10 + 5 + 'px';
-                particle.style.height = particle.style.width;
-                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-                particle.style.animationDuration = Math.random() * 20 + 10 + 's';
-                particle.style.animationDelay = Math.random() * 5 + 's';
-                particlesContainer.appendChild(particle);
-            }
-        }
+function renewSubscriber(id){
+  const s=subscribers.find(x=>x.id===id);
+  if(!s)return;
+  const today=new Date().toISOString().split('T')[0];
+  const ne=new Date(today);
+  ne.setDate(ne.getDate()+s.days);
+  s.start=today;s.end=ne.toISOString().split('T')[0];
+  save();renderTable();updateStats();
+  showToast('🔄 تم تجديد اشتراك '+s.name);
+}
 
-        createParticles();
+function daysLeft(endDate){
+  const t=new Date();t.setHours(0,0,0,0);
+  const e=new Date(endDate);e.setHours(0,0,0,0);
+  return Math.ceil((e-t)/(1000*60*60*24));
+}
 
-        // Fade in animation on scroll
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in');
-                }
-            });
-        });
+function getStatus(d){
+  if(d<=0)return'expired';
+  if(d<=3)return'danger';
+  if(d<=7)return'warn';
+  return'good';
+}
 
-        document.querySelectorAll('.glass-card, .stat-card').forEach((el) => {
-            observer.observe(el);
-        });
+function formatDate(d){
+  const p=d.split('-');return p[2]+'/'+p[1]+'/'+p[0];
+}
 
-        // Sparkle effect on mouse move
-        document.addEventListener('mousemove', (e) => {
-            if (Math.random() > 0.97) {
-                const sparkle = document.createElement('div');
-                sparkle.style.position = 'fixed';
-                sparkle.style.left = e.clientX + 'px';
-                sparkle.style.top = e.clientY + 'px';
-                sparkle.style.width = '4px';
-                sparkle.style.height = '4px';
-                sparkle.style.background = '#ff0844';
-                sparkle.style.borderRadius = '50%';
-                sparkle.style.pointerEvents = 'none';
-                sparkle.style.zIndex = '9999';
-                sparkle.style.boxShadow = '0 0 10px #ff0844';
-                sparkle.style.animation = 'fadeOut 1s forwards';
-                document.body.appendChild(sparkle);
-                
-                setTimeout(() => sparkle.remove(), 1000);
-            }
-        });
+function setFilter(f,el){
+  currentFilter=f;
+  document.querySelectorAll('.ftab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');renderTable();
+}
 
-        // Add fadeOut animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes fadeOut {
-                to {
-                    opacity: 0;
-                    transform: translateY(-20px);
-                }
-            }
-        `;
-        document.head.appendChild(style);
-    </script>
+function renderTable(){
+  const search=document.getElementById('searchBox').value.toLowerCase();
+  const tbody=document.getElementById('tableBody');
+  const empty=document.getElementById('emptyState');
+  let list=subscribers.filter(s=>{
+    const dl=daysLeft(s.end);const st=getStatus(dl);
+    if(currentFilter==='active'&&st==='expired')return false;
+    if(currentFilter==='warn'&&st!=='warn'&&st!=='danger')return false;
+    if(currentFilter==='expired'&&st!=='expired')return false;
+    if(search&&!s.name.toLowerCase().includes(search)&&!(s.phone||'').includes(search))return false;
+    return true;
+  });
+  list.sort((a,b)=>daysLeft(a.end)-daysLeft(b.end));
+  if(!list.length){tbody.innerHTML='';empty.style.display='block';return}
+  empty.style.display='none';
+  const colors={good:'#22c55e',warn:'#eab308',danger:'#ef4444',expired:'#555'};
+  const labels={good:'🟢',warn:'🟡',danger:'🔴',expired:'⚫'};
+  tbody.innerHTML=list.map((s,i)=>{
+    const dl=daysLeft(s.end);const st=getStatus(dl);
+    const pct=Math.max(0,Math.min(100,(dl/s.days)*100));
+    const daysText=dl<=0?'منتهي':dl+' يوم';
+    return '<tr><td style="color:var(--muted);font-family:Rajdhani,sans-serif">'+(i+1)+'</td>'+
+      '<td><div class="name-cell">'+s.name+'</div>'+(s.note?'<div style="font-size:11px;color:var(--muted)">'+s.note+'</div>':'')+'</td>'+
+      '<td style="font-family:Rajdhani,sans-serif;color:var(--muted)">'+(s.phone||'—')+'</td>'+
+      '<td><span class="pkg-tag">'+s.pkg+'</span></td>'+
+      '<td style="color:var(--muted)">'+formatDate(s.end)+'</td>'+
+      '<td><span class="days-badge '+st+'">'+labels[st]+' '+daysText+'</span>'+
+      '<div class="progress-bar"><div class="progress-fill" style="width:'+pct+'%;background:'+colors[st]+'"></div></div></td>'+
+      '<td><button class="renew-btn" onclick="renewSubscriber('+s.id+')">تجديد</button>'+
+      '<button class="del-btn" onclick="deleteSubscriber('+s.id+')">حذف</button></td></tr>';
+  }).join('');
+}
+
+function updateStats(){
+  document.getElementById('totalCount').textContent=subscribers.length;
+  document.getElementById('activeCount').textContent=subscribers.filter(s=>daysLeft(s.end)>7).length;
+  document.getElementById('warnCount').textContent=subscribers.filter(s=>{const d=daysLeft(s.end);return d>0&&d<=7}).length;
+  document.getElementById('expiredCount').textContent=subscribers.filter(s=>daysLeft(s.end)<=0).length;
+}
+
+function lookupSub(){
+  const phone=document.getElementById('lookupPhone').value.trim().replace(/\s/g,'');
+  const container=document.getElementById('lookupResult');
+  if(!phone){showToast('❗ أدخل رقم هاتفك');return}
+  const sub=subscribers.find(s=>(s.phone||'').replace(/\s/g,'')===phone);
+  if(!sub){
+    container.innerHTML='<div class="not-found"><div class="icon">😕</div><p>الرقم ده مش مسجل عندنا<br>تواصل مع الأدمن للمساعدة 📲</p></div>';
+    return;
+  }
+  const dl=daysLeft(sub.end);
+  const st=getStatus(dl);
+  const pct=Math.max(0,Math.min(100,(dl/sub.days)*100));
+  const clrs={good:'var(--green)',warn:'var(--yellow)',danger:'var(--red)',expired:'var(--muted)'};
+  let msg='';
+  if(dl<=0) msg='<div class="alert-msg alert-danger">⛔ انتهى اشتراكك — تواصل للتجديد<br>📲 wa.me/201015411497</div>';
+  else if(dl<=3) msg='<div class="alert-msg alert-danger">⚠️ اشتراكك على وشك ينتهي! جدد الآن<br>📲 wa.me/201015411497</div>';
+  else if(dl<=7) msg='<div class="alert-msg alert-warn">🟡 باقي أقل من أسبوع — فكر في التجديد</div>';
+  else msg='<div class="alert-msg alert-ok">✅ اشتراكك نشط وتمام!</div>';
+
+  container.innerHTML='<div class="result-card">'+
+    '<div class="result-name">👋 أهلاً، '+sub.name+'</div>'+
+    '<div style="margin-bottom:4px"><span class="pkg-tag">'+sub.pkg+'</span></div>'+
+    '<div class="days-circle '+st+'">'+
+      '<span class="num">'+(dl<=0?'0':dl)+'</span>'+
+      '<span class="lbl">'+(dl<=0?'منتهي':'يوم باقي')+'</span>'+
+    '</div>'+
+    '<div class="result-row"><span class="result-label">📅 تاريخ البداية</span><span class="result-value">'+formatDate(sub.start)+'</span></div>'+
+    '<div class="result-row"><span class="result-label">⏳ تاريخ الانتهاء</span><span class="result-value">'+formatDate(sub.end)+'</span></div>'+
+    '<div class="result-row"><span class="result-label">📦 الباقة</span><span class="result-value">'+sub.pkg+'</span></div>'+
+    '<div class="result-row" style="border:none"><span class="result-label">⚡ نسبة المتبقي</span><span class="result-value">'+Math.round(pct)+'%</span></div>'+
+    '<div style="background:rgba(255,255,255,.04);border-radius:6px;overflow:hidden;height:6px;margin-top:6px">'+
+      '<div style="height:100%;width:'+pct+'%;background:'+clrs[st]+';border-radius:6px;transition:width .6s"></div>'+
+    '</div>'+msg+'</div>';
+}
+
+function save(){localStorage.setItem('omega_subs',JSON.stringify(subscribers))}
+
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2800);
+}
+
+renderTable();updateStats();
+</script>
 </body>
 </html>
